@@ -32,25 +32,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      /* background-size, background-position are for image backgrounds.
-         For video background, these are handled by the video element's CSS. */
       position: relative;
       padding: 1rem;
+      /* Ensure text is readable - default for image backgrounds */
+      color: white; /* Set default text color for all slides */
+      text-align: center; /* Set default text alignment */
     }
-    /* This ::before pseudo-element was for image overlays.
-       For video, we use a separate <div> overlay for more control. */
-    .carousel-slide::before {
-      content: '';
+
+    /* Important: Remove background-image from .carousel-slide if you're using <video> */
+    /* This style is for slides that *only* use an image background */
+    .carousel-slide.image-bg {
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* CSS for Video Background */
+    .video-background {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: transparent; /* Changed to transparent as we're using a div overlay */
-      z-index: 5; /* Keep it below text but above video if needed for other effects */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures video covers the entire area */
+      z-index: 0; /* Puts video behind other content */
     }
-    .carousel-slide h1,
-    .carousel-slide a {
+    /* CSS for Video Overlay */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+      z-index: 5; /* Puts overlay over video but under text */
+    }
+
+    /* Ensure content on slides is above video and overlay */
+    .carousel-slide > div[data-aos] {
       position: relative;
-      z-index: 10; /* Ensures text and buttons are on top */
+      z-index: 10;
     }
+
+    /* Responsive text sizing */
     .carousel-slide h1 {
       font-size: 1.8rem;
     }
@@ -64,6 +87,8 @@
         font-size: 4rem;
       }
     }
+
+    /* Carousel indicators */
     .carousel-indicators {
       position: absolute;
       bottom: 20px;
@@ -85,26 +110,6 @@
       opacity: 1;
       background-color: yellow;
     }
-    /* New CSS for Video Background */
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures video covers the entire area */
-      z-index: 0; /* Puts video behind other content */
-    }
-    /* New CSS for Overlay */
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-      z-index: 5; /* Puts overlay over video but under text */
-    }
   </style>
 </head>
 <body class="bg-white text-black font-sans leading-relaxed">
@@ -124,65 +129,47 @@
 
 <div class="carousel" id="carousel">
   <div class="carousel-track" id="carousel-track">
-    <section class="carousel-slide text-white text-center">
+
+    <section class="carousel-slide">
       <video autoplay loop muted playsinline class="video-background">
-        <source src="YOUR_RAW_GITHUB_VIDEO_URL_HERE.mp4" type="video/mp4">
+        <source src="https://github.com/Chris19-coder/Landing-Page/raw/refs/heads/main/11904055_3840_2160_24fps%20(1)%20(1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="video-overlay"></div>
-      <div class="relative z-10" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
       </div>
-    <div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <section class="carousel-slide text-white text-center">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="YOUR_RAW_GITHUB_VIDEO_URL_HERE.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div class="relative z-10" data-aos="fade-up">
+    </section>
+
+    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?branding,futuristic');">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Explore Work</a>
       </div>
-   <div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <section class="carousel-slide text-white text-center">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="YOUR_RAW_GITHUB_VIDEO_URL_HERE.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div class="relative z-10" data-aos="fade-up">
+    </section>
+
+    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
         <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
       </div>
-   <div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <section class="carousel-slide text-white text-center">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="YOUR_RAW_GITHUB_VIDEO_URL_HERE.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div class="relative z-10" data-aos="fade-up">
+    </section>
+
+    <section class="carousel-slide image-bg" style="background-image: url('https://www.pexels.com/video/compute-7593210/');">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
       </div>
- <div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
-    <section class="carousel-slide text-white text-center">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="YOUR_RAW_GITHUB_VIDEO_URL_HERE.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div class="relative z-10" data-aos="fade-up">
+    </section>
+
+    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?media,intelligence');">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Get in Touch</a>
       </div>
     </section>
+
   </div>
   <div class="carousel-indicators" id="carousel-indicators"></div>
 </div>
