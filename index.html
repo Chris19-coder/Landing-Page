@@ -7,6 +7,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      width: 100vw;
+      height: 100vh;
+    }
+    .scroll-slide {
+      flex: none;
+      scroll-snap-align: start;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body class="bg-white text-black font-sans leading-relaxed">
   <!-- Sticky Navigation -->
@@ -25,21 +49,21 @@
     </div>
   </header>
 
-  <!-- Sliding Hero Section -->
-  <div class="flex overflow-x-auto snap-x snap-mandatory h-screen w-screen scroll-smooth">
-    <section class="w-screen h-screen snap-start flex items-center justify-center bg-black text-white px-6">
+  <!-- Fullscreen Horizontal Slides -->
+  <div class="scroll-container">
+    <section class="scroll-slide bg-black text-white px-6">
       <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator your brand can't ignore.</h1>
     </section>
-    <section class="w-screen h-screen snap-start flex items-center justify-center bg-gray-900 text-white px-6">
+    <section class="scroll-slide bg-gray-900 text-white px-6">
       <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator your brand can't overlook.</h1>
     </section>
-    <section class="w-screen h-screen snap-start flex items-center justify-center bg-gray-800 text-white px-6">
+    <section class="scroll-slide bg-gray-800 text-white px-6">
       <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator you MUST HAVE.</h1>
     </section>
-    <section class="w-screen h-screen snap-start flex items-center justify-center bg-gray-700 text-white px-6">
+    <section class="scroll-slide bg-gray-700 text-white px-6">
       <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator of COMMUNICATION MEASUREMENT.</h1>
     </section>
-    <section class="w-screen h-screen snap-start flex items-center justify-center bg-gray-600 text-white px-6">
+    <section class="scroll-slide bg-gray-600 text-white px-6">
       <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator of media intelligence.</h1>
     </section>
   </div>
