@@ -1,111 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Media Intelligence That Moves You</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-    .carousel {
-      display: flex;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.8s ease-in-out;
-      width: 500vw;
-    }
-    .carousel-slide {
-      flex: 0 0 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-size: cover;
-      background-position: center;
-      position: relative;
-      padding: 1rem;
-    }
-    .carousel-slide::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-    }
-    .carousel-slide h1,
-    .carousel-slide a {
-      position: relative;
-      z-index: 10;
-    }
-    .carousel-slide h1 {
-      font-size: 1.8rem;
-    }
-    @media (min-width: 768px) {
-      .carousel-slide h1 {
-        font-size: 3rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .carousel-slide h1 {
-        font-size: 4rem;
-      }
-    }
-    .carousel-indicators {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 20;
-    }
-    .carousel-indicators div {
-      width: 10px;
-      height: 10px;
-      border-radius: 9999px;
-      background-color: white;
-      opacity: 0.5;
-      cursor: pointer;
-    }
-    .carousel-indicators .active {
-      opacity: 1;
-      background-color: yellow;
-    }
-  </style>
-</head>
-<body class="bg-white text-black font-sans leading-relaxed">
-  <!-- Header -->
-  <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="/">
-        <img src="logo.png" alt="Logo" class="h-20">
-      </a>
-      <nav class="space-x-6 hidden md:block">
-        <a href="#about" class="text-sm font-medium hover:underline">About</a>
-        <a href="#services" class="text-sm font-medium hover:underline">Services</a>
-        <a href="#work" class="text-sm font-medium hover:underline">Work</a>
-        <a href="#contact" class="text-sm font-medium hover:underline">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Carousel -->
-  <div class="carousel" id="carousel">
-    <div class="carousel-track" id="carousel-track">
-      <!-- Carousel -->
-<div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
+<!-- Carousel -->
+<div class="relative w-full h-screen overflow-hidden">
+  <div class="carousel-track flex transition-transform duration-700 ease-in-out w-[500vw] h-full" id="carousel-track">
     <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?media,tech');">
       <div>
         <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
@@ -137,132 +32,71 @@
       </div>
     </section>
   </div>
-  <div class="carousel-indicators" id="carousel-indicators"></div>
+  <div class="carousel-indicators absolute bottom-5 left-1/2 transform -translate-x-1/2 flex gap-2 z-20" id="carousel-indicators"></div>
 </div>
 
-  <!-- General About Section -->
-  <section id="about" class="py-20 bg-gray-100 text-center px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">About Us</h2>
-      <p class="text-lg mb-6">GlobeTrack is a media intelligence company focused on transforming how brands monitor, measure, and learn from communication across platforms. We help you take lead of your narrative.</p>
-      <a href="#contact" class="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition">Get in Touch</a>
-    </div>
-  </section>
-
-  <!-- General Services Section -->
-  <section id="services" class="py-20 bg-white text-center px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Our Services</h2>
-      <p class="text-lg mb-10">We offer strategic media solutions to help your brand gain clarity and control across platforms. Learn more about each service below.</p>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
-          <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
-          <a href="#service1" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
-          <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
-          <a href="#service2" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
-          <p class="text-sm mb-4">Track ad placement performance across channels in real time.</p>
-          <a href="#service3" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-   <!-- (Sections remain unchanged up to services) -->
-  <!-- Additional Service Sections Restored -->
-  <section id="service1" class="py-20 text-white text-center" style="background-image: url('https://source.unsplash.com/1600x900/?communication,performance'); background-size: cover; background-position: center;">
-    <div class="bg-black bg-opacity-60 py-12 px-4">
-      <h2 class="text-4xl font-bold mb-4">Strategic Communication Measurement</h2>
-      <p class="max-w-4xl mx-auto">We design metrics that matter — aligning media results to your communication strategy, so every campaign is measurable and accountable.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-      <img src="https://source.unsplash.com/400x300/?strategy" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?media,measurement" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?performance" class="rounded-lg shadow-lg">
-    </div>
-  </section>
-  <section id="service2" class="py-20 text-white text-center" style="background-image: url('https://source.unsplash.com/1600x900/?data,insight'); background-size: cover; background-position: center;">
-    <div class="bg-black bg-opacity-60 py-12 px-4">
-      <h2 class="text-4xl font-bold mb-4">Insight-Driven Analysis</h2>
-      <p class="max-w-4xl mx-auto">We deliver deep insights backed by robust analytics to guide impactful decisions and long-term growth strategies.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-      <img src="https://source.unsplash.com/400x300/?analytics,report" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?insight,technology" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?business,intelligence" class="rounded-lg shadow-lg">
-    </div>
-  </section>
-  <section id="service3" class="py-20 text-white text-center" style="background-image: url('https://source.unsplash.com/1600x900/?advertising,track'); background-size: cover; background-position: center;">
-    <div class="bg-black bg-opacity-60 py-12 px-4">
-      <h2 class="text-4xl font-bold mb-4">Advertisement Tracking</h2>
-      <p class="max-w-4xl mx-auto">Monitor and evaluate your advertisement placements across media platforms to understand reach, frequency, and effectiveness.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-      <img src="https://source.unsplash.com/400x300/?marketing,ads" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?tv,broadcast" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?online,advertising" class="rounded-lg shadow-lg">
-    </div>
-  </section>
-
-  <!-- Contact Section with Socials -->
-  <section id="contact" class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
-      <p class="text-gray-600 mb-6">Reach out to us today.</p>
-      <a href="mailto:hello@globetrack.co.ke" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">Email Us</a>
-      <div class="mt-6 space-x-4">
-        <a href="#" class="inline-block"><img src="facebook-icon.svg" alt="Facebook" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="linkedin-icon.svg" alt="LinkedIn" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="x-icon.svg" alt="X Twitter" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="youtube-icon.svg" alt="YouTube" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="tiktok-icon.svg" alt="TikTok" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="instagram-icon.svg" alt="Instagram" class="h-6 inline"></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer with Navigation -->
-  <footer class="bg-black text-white text-center py-12">
-    <nav class="mb-4 space-x-6">
-      <a href="#about" class="hover:underline">About</a>
-      <a href="#work" class="hover:underline">Work</a>
-      <a href="#contact" class="hover:underline">Contact</a>
-    </nav>
-    <p class="text-lg">Take Lead Of Your Narrative</p>
-    <a href="#" class="mt-4 inline-block text-white underline hover:text-gray-400">Contact Us: +254 720 704 818</a>
-    <p class="text-sm mt-6 text-gray-400">© 2025 Globetrack</p>
-  </footer>
-  <script>
-    AOS.init();
-    const track = document.getElementById('carousel-track');
-    const indicators = document.getElementById('carousel-indicators');
-    const totalSlides = 5;
-    let currentSlide = 0;
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('div');
-      dot.addEventListener('click', () => {
-        currentSlide = i;
-        updateSlide();
-      });
-      indicators.appendChild(dot);
+<style>
+  .carousel-slide {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding: 1rem;
+  }
+  .carousel-slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .carousel-slide h1,
+  .carousel-slide a {
+    position: relative;
+    z-index: 10;
+  }
+  .carousel-slide h1 {
+    font-size: 1.8rem;
+  }
+  @media (min-width: 768px) {
+    .carousel-slide h1 {
+      font-size: 3rem;
     }
-    function updateSlide() {
-      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      Array.from(indicators.children).forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
+  }
+  @media (min-width: 1024px) {
+    .carousel-slide h1 {
+      font-size: 4rem;
     }
-    updateSlide();
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
+  }
+</style>
+
+<script>
+  const track = document.getElementById('carousel-track');
+  const indicators = document.getElementById('carousel-indicators');
+  const totalSlides = 5;
+  let currentSlide = 0;
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('div');
+    dot.className = "w-3 h-3 rounded-full bg-white opacity-50 cursor-pointer";
+    dot.addEventListener('click', () => {
+      currentSlide = i;
       updateSlide();
-    }, 4000);
-  </script>
-</body>
-</html>
+    });
+    indicators.appendChild(dot);
+  }
+  function updateSlide() {
+    track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    Array.from(indicators.children).forEach((dot, i) => {
+      dot.classList.toggle('opacity-100', i === currentSlide);
+      dot.classList.toggle('bg-yellow', i === currentSlide);
+    });
+  }
+  updateSlide();
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlide();
+  }, 4000);
+</script>
