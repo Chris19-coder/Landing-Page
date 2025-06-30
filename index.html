@@ -68,7 +68,7 @@
     }
 
     /* Ensure content on slides is above video and overlay */
-    .carousel-slide > div[data-aos] {
+    .carousel-slide > div {
       position: relative;
       z-index: 10;
     }
@@ -124,13 +124,23 @@
             grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens and up */
         }
     }
+
+    /* Fade In Animation for Carousel Text */
+    .animate-fade-in {
+      animation: fade-in 1s ease-in-out forwards; /* 'forwards' keeps the end state */
+    }
+
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body class="bg-white text-black font-sans leading-relaxed">
   <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
       <a href="/">
-        <img src="logo.png" alt="Logo" class="h-28">
+        <img src="logo.png" alt="Logo" class="h-32">
       </a>
       <nav class="space-x-6 hidden md:block">
         <a href="#about" class="text-sm font-medium hover:underline">About</a>
@@ -146,11 +156,11 @@
 
     <section class="carousel-slide">
       <video autoplay loop muted playsinline class="video-background">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-futuristic-business-woman-in-virtual-reality-4318-large.mp4" type="video/mp4">
+        <source src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/11904055_3840_2160_24fps%20(1)%20(1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <div class="video-overlay"></div>
-      <div data-aos="fade-up">
+      <div class="animate-fade-in" data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
       </div>
@@ -158,7 +168,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?branding,futuristic');">
       <div class="video-overlay"></div>
-      <div data-aos="fade-up">
+      <div class="animate-fade-in" data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Explore Work</a>
       </div>
@@ -166,7 +176,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
       <div class="video-overlay"></div>
-      <div data-aos="fade-up">
+      <div class="animate-fade-in" data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
         <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
       </div>
@@ -174,7 +184,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://www.pexels.com/video/compute-7593210/');">
       <div class="video-overlay"></div>
-      <div data-aos="fade-up">
+      <div class="animate-fade-in" data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
       </div>
@@ -182,7 +192,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?media,intelligence');">
       <div class="video-overlay"></div>
-      <div data-aos="fade-up">
+      <div class="animate-fade-in" data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Get in Touch</a>
       </div>
@@ -300,6 +310,14 @@
     }
     function updateSlide() {
       track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      // Re-apply animation class on slide change to trigger fade-in
+      const currentSlideElement = track.children[currentSlide].querySelector('.animate-fade-in');
+      if (currentSlideElement) {
+        currentSlideElement.classList.remove('animate-fade-in');
+        void currentSlideElement.offsetWidth; // Trigger reflow
+        currentSlideElement.classList.add('animate-fade-in');
+      }
+
       Array.from(indicators.children).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentSlide);
       });
