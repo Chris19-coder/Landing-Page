@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Media Intelligence That Moves You</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <style>
     html, body {
@@ -14,21 +13,73 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
-    .scroll-container {
+    .carousel {
       display: flex;
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
+      position: relative;
     }
-    .scroll-slide {
-      flex: none;
-      scroll-snap-align: start;
-      width: 100vw;
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+      width: 500vw;
+    }
+    .carousel-slide {
+      flex: 0 0 100vw;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      padding: 1rem;
+    }
+    .carousel-slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .carousel-slide h1,
+    .carousel-slide a {
+      position: relative;
+      z-index: 10;
+    }
+    .carousel-slide h1 {
+      font-size: 1.8rem;
+    }
+    @media (min-width: 768px) {
+      .carousel-slide h1 {
+        font-size: 3rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .carousel-slide h1 {
+        font-size: 4rem;
+      }
+    }
+    .carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+    .carousel-indicators div {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background-color: white;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    .carousel-indicators .active {
+      opacity: 1;
+      background-color: yellow;
     }
   </style>
 </head>
@@ -36,11 +87,9 @@
   <!-- Sticky Navigation -->
   <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <!-- Logo -->
       <a href="/">
         <img src="logo.png" alt="Logo" class="h-20">
       </a>
-      <!-- Navigation Links -->
       <nav class="space-x-6 hidden md:block">
         <a href="#about" class="text-sm font-medium hover:underline">About</a>
         <a href="#work" class="text-sm font-medium hover:underline">Work</a>
@@ -49,45 +98,42 @@
     </div>
   </header>
 
-  <!-- Fullscreen Horizontal Slides -->
-  <div class="scroll-container">
-    <section class="scroll-slide bg-black text-white px-6">
-      <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator your brand can't ignore.</h1>
-    </section>
-    <section class="scroll-slide bg-gray-900 text-white px-6">
-      <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator your brand can't overlook.</h1>
-    </section>
-    <section class="scroll-slide bg-gray-800 text-white px-6">
-      <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator you MUST HAVE.</h1>
-    </section>
-    <section class="scroll-slide bg-gray-700 text-white px-6">
-      <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator of COMMUNICATION MEASUREMENT.</h1>
-    </section>
-    <section class="scroll-slide bg-gray-600 text-white px-6">
-      <h1 class="text-4xl md:text-6xl font-bold text-center max-w-4xl">The differentiator of media intelligence.</h1>
-    </section>
-  </div>
-
-  <section class="min-h-screen flex items-center justify-center bg-white" data-aos="fade-right">
-    <h1 class="text-5xl font-bold">Welcome to GlobeTrack</h1>
-  </section>
-
-  <section class="min-h-screen flex items-center justify-center bg-gray-100" data-aos="fade-left">
-    <h1 class="text-5xl font-bold">Guesswork Is Not Strategy</h1>
-  </section>
-
-  <section class="min-h-screen flex items-center justify-center bg-gray-200" data-aos="fade-up">
-    <h1 class="text-5xl font-bold">Real-Time Media Monitoring</h1>
-  </section>
-
-  <!-- Hero Section -->
-  <section class="h-screen flex items-center justify-center bg-gray-100 px-6">
-    <div class="max-w-4xl text-center">
-      <h1 class="text-5xl md:text-7xl font-bold mb-6">The differentiator your brand can't ignore</h1>
-      <p class="text-lg md:text-xl mb-8">We turn insights into innovation. Let’s shape the future together.</p>
-      <a href="#work" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">View Projects</a>
+  <!-- Carousel Slider -->
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carousel-track">
+      <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?media,tech');">
+        <div>
+          <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
+          <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
+        </div>
+      </section>
+      <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?branding,futuristic');">
+        <div>
+          <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
+          <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Explore Work</a>
+        </div>
+      </section>
+      <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
+        <div>
+          <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
+          <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
+        </div>
+      </section>
+      <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?communication,analytics');">
+        <div>
+          <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
+          <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
+        </div>
+      </section>
+      <section class="carousel-slide text-white text-center" style="background-image: url('https://source.unsplash.com/1920x1080/?media,intelligence');">
+        <div>
+          <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
+          <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Get in Touch</a>
+        </div>
+      </section>
     </div>
-  </section>
+    <div class="carousel-indicators" id="carousel-indicators"></div>
+  </div>
 
   <!-- About Section -->
   <section id="about" class="px-6 py-20 bg-white">
@@ -97,32 +143,32 @@
         <p class="text-gray-600">Our team blends strategy, creativity, and technology to solve complex problems and create meaningful experiences. We partner with organizations ready to make bold moves.</p>
       </div>
       <div>
-        <img src="logo.png" alt="Logo" class="w-32mx-auto mt-6 mb-4">
+        <img src="logo.png" alt="Logo" class="w-32 mx-auto mt-6 mb-4">
       </div>
     </div>
   </section>
 
-  <!-- Work Section -->
+  <!-- Services Section -->
   <section id="work" class="bg-gray-100 py-20 px-6">
     <div class="max-w-6xl mx-auto text-center mb-12">
-      <h2 class="text-4xl font-bold">Our Recent Work</h2>
-      <p class="text-gray-600 mt-4">Collaborations that brought bold ideas to life.</p>
+      <h2 class="text-4xl font-bold">Media Monitoring</h2>
+      <p class="text-gray-600 mt-4">Giving our clients the edge in a competitive world</p>
     </div>
     <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
       <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
         <img src="https://source.unsplash.com/400x300/?innovation,tech" alt="" class="mb-4 rounded-lg">
-        <h3 class="text-2xl font-semibold">Future Mobility</h3>
-        <p class="text-gray-600 mt-2">Redesigning the urban commute for a connected world.</p>
+        <h3 class="text-2xl font-semibold">Strategic Communication Measurement</h3>
+        <p class="text-gray-600 mt-2">Strategic comms, Measured results. That's the Globetrack advantage.</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
         <img src="https://source.unsplash.com/400x300/?health,design" alt="" class="mb-4 rounded-lg">
-        <h3 class="text-2xl font-semibold">Health Tech Evolution</h3>
-        <p class="text-gray-600 mt-2">Reimagining the patient experience through digital design.</p>
+        <h3 class="text-2xl font-semibold">Insight-Driven analysis</h3>
+        <p class="text-gray-600 mt-2">Beyond the numbers, Get the clarity you need to lead.</p>
       </div>
       <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
         <img src="https://source.unsplash.com/400x300/?education,creative" alt="" class="mb-4 rounded-lg">
-        <h3 class="text-2xl font-semibold">Learning Reimagined</h3>
-        <p class="text-gray-600 mt-2">Designing tools that empower lifelong learners.</p>
+        <h3 class="text-2xl font-semibold">Advertisment Tracking</h3>
+        <p class="text-gray-600 mt-2">Master your ad spend. Precision tracking, powerful returns.</p>
       </div>
     </div>
   </section>
@@ -142,5 +188,35 @@
     <a href="#" class="mt-4 inline-block text-white underline hover:text-gray-400">Contact Us: +254 720 704 818</a>
     <p class="text-sm mt-6 text-gray-400">© 2025 Globetrack</p>
   </footer>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const indicators = document.getElementById('carousel-indicators');
+    const totalSlides = 5;
+    let currentSlide = 0;
+
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        updateSlide();
+      });
+      indicators.appendChild(dot);
+    }
+
+    function updateSlide() {
+      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      Array.from(indicators.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    updateSlide();
+
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }, 4000);
+  </script>
 </body>
 </html>
