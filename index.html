@@ -30,13 +30,13 @@
       flex: 0 0 100vw;
       height: 100vh;
       display: flex;
-      /* Ensured vertical and horizontal centering of content */
-      align-items: center; /* Vertically centers content in flex container */
-      justify-content: center; /* Horizontally centers content in flex container */
+      /* Ensures content is vertically and horizontally centered */
+      align-items: center; /* Centers content vertically */
+      justify-content: center; /* Centers content horizontally */
       position: relative;
       padding: 1rem;
       color: white;
-      text-align: center;
+      text-align: center; /* Still useful for text alignment within the content block */
     }
 
     .carousel-slide.image-bg {
@@ -301,11 +301,10 @@
     }
     function updateSlide() {
       track.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      // Re-apply animation class on slide change to trigger fade-in
       const currentSlideElement = track.children[currentSlide].querySelector('.animate-fade-in');
       if (currentSlideElement) {
         currentSlideElement.classList.remove('animate-fade-in');
-        void currentSlideElement.offsetWidth; // Trigger reflow to restart animation
+        void currentSlideElement.offsetWidth;
         currentSlideElement.classList.add('animate-fade-in');
       }
 
