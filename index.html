@@ -7,6 +7,22 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-black font-sans leading-relaxed">
+  <!-- Sticky Navigation -->
+  <header class="sticky top-0 bg-white border-b shadow-sm z-50">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/">
+        <img src="logo.png" alt="Logo" class="h-10">
+      </a>
+      <!-- Navigation Links -->
+      <nav class="space-x-6 hidden md:block">
+        <a href="#about" class="text-sm font-medium hover:underline">About</a>
+        <a href="#work" class="text-sm font-medium hover:underline">Work</a>
+        <a href="#contact" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
 
   <!-- Hero Section -->
   <section class="h-screen flex items-center justify-center bg-gray-100 px-6">
