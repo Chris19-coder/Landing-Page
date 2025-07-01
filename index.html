@@ -30,44 +30,50 @@
       flex: 0 0 100vw;
       height: 100vh;
       display: flex;
-      /* Ensures content is vertically and horizontally centered */
-      align-items: center; /* Centers content vertically */
-      justify-content: center; /* Centers content horizontally */
+      align-items: center;
+      justify-content: center;
       position: relative;
       padding: 1rem;
-      color: white;
-      text-align: center; /* Still useful for text alignment within the content block */
+      /* Ensure text is readable - default for image backgrounds */
+      color: white; /* Set default text color for all slides */
+      text-align: center; /* Set default text alignment */
     }
 
+    /* Important: Remove background-image from .carousel-slide if you're using <video> */
+    /* This style is for slides that *only* use an image background */
     .carousel-slide.image-bg {
         background-size: cover;
         background-position: center;
     }
 
+    /* CSS for Video Background */
     .video-background {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: 0;
+      object-fit: cover; /* Ensures video covers the entire area */
+      z-index: 0; /* Puts video behind other content */
     }
+    /* CSS for Video Overlay */
     .video-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 5;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+      z-index: 5; /* Puts overlay over video but under text */
     }
 
-    .carousel-slide > div {
+    /* Ensure content on slides is above video and overlay */
+    .carousel-slide > div[data-aos] {
       position: relative;
       z-index: 10;
     }
 
+    /* Responsive text sizing */
     .carousel-slide h1 {
       font-size: 1.8rem;
     }
@@ -82,6 +88,7 @@
       }
     }
 
+    /* Carousel indicators */
     .carousel-indicators {
       position: absolute;
       bottom: 20px;
@@ -104,26 +111,18 @@
       background-color: yellow;
     }
 
+    /* Adjust grid for Service sections to accommodate 2 images */
     #service1 .grid,
     #service2 .grid,
     #service3 .grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit columns */
     }
     @media (min-width: 768px) {
         #service1 .grid,
         #service2 .grid,
         #service3 .grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens and up */
         }
-    }
-
-    .animate-fade-in {
-      animation: fade-in 1s ease-in-out forwards;
-    }
-
-    @keyframes fade-in {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -131,7 +130,7 @@
   <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
       <a href="/">
-        <img src="logo.png" alt="Logo" class="h-32">
+        <img src="logo1.png" alt="Logo" class="h-10">
       </a>
       <nav class="space-x-6 hidden md:block">
         <a href="#about" class="text-sm font-medium hover:underline">About</a>
@@ -151,7 +150,7 @@
         Your browser does not support the video tag.
       </video>
       <div class="video-overlay"></div>
-      <div class="animate-fade-in" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
       </div>
@@ -159,7 +158,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?branding,futuristic');">
       <div class="video-overlay"></div>
-      <div class="animate-fade-in" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Explore Work</a>
       </div>
@@ -167,7 +166,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
       <div class="video-overlay"></div>
-      <div class="animate-fade-in" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
         <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
       </div>
@@ -175,7 +174,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://www.pexels.com/video/compute-7593210/');">
       <div class="video-overlay"></div>
-      <div class="animate-fade-in" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
         <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
       </div>
@@ -183,7 +182,7 @@
 
     <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?media,intelligence');">
       <div class="video-overlay"></div>
-      <div class="animate-fade-in" data-aos="fade-up">
+      <div data-aos="fade-up">
         <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
         <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Get in Touch</a>
       </div>
@@ -206,7 +205,12 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="text-4xl font-bold mb-4">Our Services</h2>
       <p class="text-lg mb-10">We offer strategic media solutions to help your brand gain clarity and control across platforms. Learn more about each service below.</p>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
+          <p class="text-sm mb-4">Our media monitoring solution gives you real-time visibility across broadcast, print, online, and social media — empowering your brand with the intelligence to respond, adapt, and lead.</p>
+          <a href="#service1" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+        </div>
         <div class="bg-gray-100 p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
           <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
@@ -227,6 +231,17 @@
   </section>
 
 <section id="service1" class="text-white text-center" style="background-image: url('slider1.jpg'); background-size: cover; background-position: center; height: 100vh;">
+    <div class="bg-black bg-opacity-60 py-12 px-4">
+      <h2 class="text-4xl font-bold mb-4">Media Monitoring</h2>
+      <p class="max-w-4xl mx-auto">We monitor TV, radio, newspapers, online news, and social media to keep you informed of every mention that matters. With real-time alerts, daily reports, and actionable insights, we help you track brand performance, manage reputation, and make smarter decisions.</p>
+    </div>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
+      <img src="https://source.unsplash.com/400x300/?strategy" class="rounded-lg shadow-lg">
+      <img src="https://source.unsplash.com/400x300/?media,measurement" class="rounded-lg shadow-lg">
+    </div>
+  </section>
+  
+  <section id="service1" class="text-white text-center" style="background-image: url('slider1.jpg'); background-size: cover; background-position: center; height: 100vh;">
     <div class="bg-black bg-opacity-60 py-12 px-4">
       <h2 class="text-4xl font-bold mb-4">Strategic Communication Measurement</h2>
       <p class="max-w-4xl mx-auto">We design metrics that matter — aligning media results to your communication strategy, so every campaign is measurable and accountable.</p>
@@ -265,12 +280,12 @@
       <p class="text-gray-600 mb-6">Reach out to us today.</p>
       <a href="mailto:hello@globetrack.co.ke" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">Email Us</a>
       <div class="mt-6 space-x-4">
-        <a href="#" class="inline-block"><img src="facebook-icon.svg" alt="Facebook" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="linkedin-icon.svg" alt="LinkedIn" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="x-icon.svg" alt="X Twitter" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="youtube-icon.svg" alt="YouTube" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="tiktok-icon.svg" alt="TikTok" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="instagram-icon.svg" alt="Instagram" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="facebook logo.jpg" alt="Facebook" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="linkedin logo.png" alt="LinkedIn" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="x logo.jpg" alt="X Twitter" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="youtube logo.png" alt="YouTube" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="tiktok logo.png" alt="TikTok" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="Instagram logo.jpg" alt="Instagram" class="h-6 inline"></a>
       </div>
     </div>
   </section>
@@ -301,13 +316,6 @@
     }
     function updateSlide() {
       track.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      const currentSlideElement = track.children[currentSlide].querySelector('.animate-fade-in');
-      if (currentSlideElement) {
-        currentSlideElement.classList.remove('animate-fade-in');
-        void currentSlideElement.offsetWidth;
-        currentSlideElement.classList.add('animate-fade-in');
-      }
-
       Array.from(indicators.children).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentSlide);
       });
@@ -316,7 +324,7 @@
     setInterval(() => {
       currentSlide = (currentSlide + 1) % totalSlides;
       updateSlide();
-    }, 6000);
+    }, 4000);
   </script>
 </body>
 </html>
