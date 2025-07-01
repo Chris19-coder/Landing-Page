@@ -31,7 +31,7 @@
       font-family: 'Young Serif', serif;
     }
 
-    header.sticky {
+    header.sticky-header {
       position: sticky;
       top: 0;
       background-color: white;
@@ -171,10 +171,12 @@
     }
   </style>
 </head>
+
 <body class="bg-white text-black font-sans leading-relaxed">
-  <header class="sticky border-b shadow-sm z-50">
+
+  <header class="sticky-header border-b shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between bg-white">
-      <a href="#" id="scrollToTop"><img src="logo1.png" alt="Logo" class="h-10"></a>
+      <a href="#" id="scrollToTop"><img src="logo1.png" alt="Logo" class="h-10 cursor-pointer"></a>
       <div class="flex items-center gap-4">
         <span class="icon-btn" onclick="toggleSearch()">🔍</span>
         <span class="icon-btn text-2xl" onclick="toggleMenu()">☰</span>
@@ -293,7 +295,7 @@
     AOS.init();
     const track = document.getElementById('carousel-track');
     const indicators = document.getElementById('carousel-indicators');
-    const totalSlides = 1;
+    const totalSlides = 5;
     let currentSlide = 0;
     for (let i = 0; i < totalSlides; i++) {
       const dot = document.createElement('div');
@@ -315,6 +317,7 @@
       updateSlide();
     }, 4000);
   </script>
+
 </body>
 
   <section id="about" class="py-20 bg-gray-100 text-center px-6">
