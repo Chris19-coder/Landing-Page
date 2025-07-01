@@ -1,98 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Media Intelligence That Moves You</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-    .carousel {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.8s ease-in-out;
-      width: 500vw; /* Adjust if you add/remove slides */
-      height: 100%;
-    }
-    .carousel-slide {
-      flex: 0 0 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 1rem;
-      /* Ensure text is readable - default for image backgrounds */
-      color: white; /* Set default text color for all slides */
-      text-align: center; /* Set default text alignment */
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media Intelligence That Moves You</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    .carousel {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+      width: 500vw; /* 100vw * number of slides */
+      height: 100%;
+    }
+    .carousel-slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+    }
+    .carousel-slide.image-bg {
+        background-size: cover;
+        background-position: center;
+    }
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 5;
+    }
+    .carousel-slide > div[data-aos] {
+      position: relative;
+      z-index: 10;
+    }
+    .carousel-slide h1 {
+      font-size: 1.8rem;
+    }
+    @media (min-width: 768px) {
+      .carousel-slide h1 {
+        font-size: 3rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .carousel-slide h1 {
+        font-size: 4rem;
+      }
+    }
+    .carousel-indicators {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+    .carousel-indicators div {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background-color: white;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+    .carousel-indicators .active {
+      opacity: 1;
+      background-color: yellow;
+    }
 
-    /* Important: Remove background-image from .carousel-slide if you're using <video> */
-    /* This style is for slides that *only* use an image background */
-    .carousel-slide.image-bg {
-        background-size: cover;
-        background-position: center;
-    }
-
-    /* CSS for Video Background */
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures video covers the entire area */
-      z-index: 0; /* Puts video behind other content */
-    }
-    /* CSS for Video Overlay */
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-      z-index: 5; /* Puts overlay over video but under text */
-    }
-
-    /* Ensure content on slides is above video and overlay */
-    .carousel-slide > div[data-aos] {
-      position: relative;
-      z-index: 10;
-    }
-
-    /* START: ADDED CSS FOR FULL-SCREEN SECTIONS */
+    /* STYLES FOR FULL-SCREEN SERVICE SECTION */
     .full-screen-section {
-        height: 100vh; /* Makes the section's height 100% of the viewport height */
+        height: 100vh;
         width: 100%;
-        position: relative; /* Needed for the overlay and content positioning */
-        display: flex; /* Using flexbox to easily center content */
-        flex-direction: column; /* Stacks content vertically */
-        align-items: center; /* Horizontally centers content */
-        justify-content: center; /* Vertically centers content */
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        color: white; /* Sets the text color for contrast */
-        padding: 2rem; /* Adds some space around the edges */
-
-        /* These rules handle the background image */
+        color: white;
+        padding: 2rem;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
-
-    /* This creates the dark overlay, just like your carousel's .video-overlay */
     .full-screen-section::before {
         content: '';
         position: absolute;
@@ -100,287 +121,248 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.6); /* Semi-transparent black overlay. Adjust opacity if needed. */
-        z-index: 1; /* Puts overlay above the background image */
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
     }
-
-    /* This ensures your text and images appear on top of the dark overlay */
     .full-screen-section > .content-wrapper {
         position: relative;
-        z-index: 2; /* Puts content above the overlay */
+        z-index: 2;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    /* END: ADDED CSS FOR FULL-SCREEN SECTIONS */
-
-    /* Responsive text sizing */
-    .carousel-slide h1 {
-      font-size: 1.8rem;
-    }
-    @media (min-width: 768px) {
-      .carousel-slide h1 {
-        font-size: 3rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .carousel-slide h1 {
-        font-size: 4rem;
-      }
-    }
-
-    /* Carousel indicators */
-    .carousel-indicators {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 20;
-    }
-    .carousel-indicators div {
-      width: 10px;
-      height: 10px;
-      border-radius: 9999px;
-      background-color: white;
-      opacity: 0.5;
-      cursor: pointer;
-    }
-    .carousel-indicators .active {
-      opacity: 1;
-      background-color: yellow;
-    }
-
-    /* Adjust grid for Service sections to accommodate 2 images */
-    #service1 .grid,
-    #service2 .grid,
-    #service3 .grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Auto-fit columns */
-    }
-    @media (min-width: 768px) {
-        #service1 .grid,
-        #service2 .grid,
-        #service3 .grid {
-            grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens and up */
-        }
-    }
-  </style>
+  </style>
 </head>
 <body class="bg-white text-black font-sans leading-relaxed">
-  <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-      <a href="/">
-        <img src="logo1.png" alt="Logo" class="h-10">
-      </a>
-      <nav class="space-x-6 hidden md:block">
-        <a href="#about" class="text-sm font-medium hover:underline">About</a>
-        <a href="#services" class="text-sm font-medium hover:underline">Services</a>
-        <a href="#work" class="text-sm font-medium hover:underline">Work</a>
-        <a href="#contact" class="text-sm font-medium hover:underline">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <header class="sticky top-0 bg-yellow border-b shadow-sm z-50">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="/">
+        <img src="logo1.png" alt="Logo" class="h-10">
+      </a>
+      <nav class="space-x-6 hidden md:block">
+        <a href="#about" class="text-sm font-medium hover:underline">About</a>
+        <a href="#services" class="text-sm font-medium hover:underline">Services</a>
+        <a href="#work" class="text-sm font-medium hover:underline">Work</a>
+        <a href="#contact" class="text-sm font-medium hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
 
 <div class="carousel" id="carousel">
-  <div class="carousel-track" id="carousel-track">
+  <div class="carousel-track" id="carousel-track">
 
-    <section class="carousel-slide">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/11904055_3840_2160_24fps%20(1)%20(1).mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div data-aos="fade-up">
-        <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
-        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
-      </div>
-    </section>
+    <section class="carousel-slide">
+      <video autoplay loop muted playsinline class="video-background">
+        <source src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/11904055_3840_2160_24fps%20(1)%20(1).mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+      <div data-aos="fade-up">
+        <h1 class="font-bold mb-6">The differentiator your brand can't ignore.</h1>
+        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
+      </div>
+    </section>
 
-   <section class="carousel-slide">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="Video_Generation_Dark_Skin.mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div data-aos="fade-up">
-        <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
-        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
-      </div>
-    </section>
+   <section class="carousel-slide">
+      <video autoplay loop muted playsinline class="video-background">
+        <source src="Video_Generation_Dark_Skin.mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+      <div data-aos="fade-up">
+        <h1 class="font-bold mb-6">The differentiator your brand can't overlook.</h1>
+        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
+      </div>
+    </section>
 
-    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
-      <div class="video-overlay"></div>
-      <div data-aos="fade-up">
-        <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
-        <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
-      </div>
-    </section>
+    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?strategy,technology');">
+      <div class="video-overlay"></div>
+      <div data-aos="fade-up">
+        <h1 class="font-bold mb-6">The differentiator you MUST HAVE.</h1>
+        <a href="#about" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Learn More</a>
+      </div>
+    </section>
 
-    <section class="carousel-slide image-bg" style="background-image: url('https://www.pexels.com/video/compute-7593210/');">
-      <div class="video-overlay"></div>
-      <div data-aos="fade-up">
-        <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
-        <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
-      </div>
-    </section>
+    <section class="carousel-slide image-bg" style="background-image: url('https://source.unsplash.com/1920x1080/?communication,measurement');">
+      <div class="video-overlay"></div>
+      <div data-aos="fade-up">
+        <h1 class="font-bold mb-6">The differentiator of COMMUNICATION MEASUREMENT.</h1>
+        <a href="#work" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Case Studies</a>
+      </div>
+    </section>
 
-     <section class="carousel-slide">
-      <video autoplay loop muted playsinline class="video-background">
-        <source src="Video_Generation_Dark_Skin.mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="video-overlay"></div>
-      <div data-aos="fade-up">
-        <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
-        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
-      </div>
-    </section>
+     <section class="carousel-slide">
+      <video autoplay loop muted playsinline class="video-background">
+        <source src="Video_Generation_Dark_Skin.mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-overlay"></div>
+      <div data-aos="fade-up">
+        <h1 class="font-bold mb-6">The differentiator of media intelligence.</h1>
+        <a href="#contact" class="bg-yellow text-black px-6 py-3 rounded-full text-lg font-semibold inline-block">Let’s Talk</a>
+      </div>
+    </section>
 
-  </div>
-  <div class="carousel-indicators" id="carousel-indicators"></div>
+  </div>
+  <div class="carousel-indicators" id="carousel-indicators"></div>
 </div>
 
 
-  <section id="about" class="py-20 bg-gray-100 text-center px-6">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">About Us</h2>
-      <p class="text-lg mb-6">GlobeTrack is a media intelligence company focused on transforming how brands monitor, measure, and learn from communication across platforms. We help you take lead of your narrative.</p>
-      <a href="#contact" class="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition">Get in Touch</a>
-    </div>
-  </section>
+  <section id="about" class="py-20 bg-gray-100 text-center px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">About Us</h2>
+      <p class="text-lg mb-6">GlobeTrack is a media intelligence company focused on transforming how brands monitor, measure, and learn from communication across platforms. We help you take lead of your narrative.</p>
+      <a href="#contact" class="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition">Get in Touch</a>
+    </div>
+  </section>
 
-  <section id="services" class="py-20 bg-white text-center px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-bold mb-4">Our Services</h2>
-      <p class="text-lg mb-10">We offer strategic media solutions to help your brand gain clarity and control across platforms. Learn more about each service below.</p>
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
-          <p class="text-sm mb-4">Our media monitoring solution gives you real-time visibility across broadcast, print, online, and social media — empowering your brand with the intelligence to respond, adapt, and lead.</p>
-          <a href="#service1" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
-          <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
-          <a href="#service1-measurement" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
-          <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
-          <a href="#service2" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-        <div class="bg-gray-100 p-6 rounded-lg shadow">
-          <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
-          <p class="text-sm mb-4">Track ad placement performance across channels in real time.</p>
-          <a href="#service3" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section id="services" class="py-20 bg-white text-center px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl font-bold mb-4">Our Services</h2>
+      <p class="text-lg mb-10">We offer strategic media solutions to help your brand gain clarity and control across platforms. Learn more about each service below.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
+          <p class="text-sm mb-4">Our media monitoring solution gives you real-time visibility across broadcast, print, online, and social media — empowering your brand with the intelligence to respond, adapt, and lead.</p>
+          <a href="#service1" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
+          <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
+          <a href="#service1-measurement" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
+          <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
+          <a href="#service2" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow">
+          <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
+          <p class="text-sm mb-4">Track ad placement performance across channels in real time.</p>
+          <a href="#service3" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <section id="service1" class="full-screen-section" style="background-image: url('slider1.jpg');">
         <div class="content-wrapper">
-            
             <div class="mb-10">
                 <h2 class="text-4xl font-bold mb-4">Media Monitoring</h2>
                 <p class="max-w-4xl mx-auto">We monitor TV, radio, newspapers, online news, and social media to keep you informed of every mention that matters. With real-time alerts, daily reports, and actionable insights, we help you track brand performance, manage reputation, and make smarter decisions.</p>
             </div>
-    
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-                <img src="image monitoring studio.png" class="rounded-lg shadow-lg w-full h-full object-cover">
-                <img src="https://source.unsplash.com/400x300/?media,measurement" class="rounded-lg shadow-lg w-full h-full object-cover">
+                <img src="image monitoring studio.png" alt="Media Monitoring Studio" class="rounded-lg shadow-lg w-full h-full object-cover">
+                <img src="https://source.unsplash.com/400x300/?media,measurement" alt="Media Measurement Chart" class="rounded-lg shadow-lg w-full h-full object-cover">
             </div>
-    
         </div>
     </section>
-  
+  
     <section id="service1-measurement" class="text-white text-center" style="background-image: url('slider1.jpg'); background-size: cover; background-position: center; height: 100vh;">
-        <div class="bg-black bg-opacity-60 py-12 px-4">
+        <div class="w-full h-full bg-black bg-opacity-60 py-12 px-4 flex flex-col items-center justify-center">
             <h2 class="text-4xl font-bold mb-4">Strategic Communication Measurement</h2>
             <p class="max-w-4xl mx-auto">We design metrics that matter — aligning media results to your communication strategy, so every campaign is measurable and accountable.</p>
-        </div>
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-            <img src="pexels-googledeepmind-17485707.jpg" class="rounded-lg shadow-lg">
-            <img src="image floating window.png" class="rounded-lg shadow-lg">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 px-4">
+                <img src="pexels-googledeepmind-17485707.jpg" alt="Strategic Communication Image 1" class="rounded-lg shadow-lg">
+                <img src="image floating window.png" alt="Strategic Communication Image 2" class="rounded-lg shadow-lg">
+            </div>
         </div>
     </section>
 
-  <section id="service2" class="text-white text-center" style="background-image: url('slider2.jpg'); background-size: cover; background-position: center; height: 100vh;">
-    <div class="bg-black bg-opacity-60 py-12 px-4">
-    <h2 class="text-4xl font-bold mb-4">Insight-Driven Analysis</h2>
-      <p class="max-w-4xl mx-auto">We deliver deep insights backed by robust analytics to guide impactful decisions and long-term growth strategies.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-      <img src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/slide1.jpeg" class="rounded-lg shadow-lg">
-      <img src="image data analytics.png" class="rounded-lg shadow-lg">
-    </div>
-  </section>
+  <section id="service2" class="text-white text-center" style="background-image: url('slider2.jpg'); background-size: cover; background-position: center; height: 100vh;">
+      <div class="w-full h-full bg-black bg-opacity-60 py-12 px-4 flex flex-col items-center justify-center">
+        <h2 class="text-4xl font-bold mb-4">Insight-Driven Analysis</h2>
+        <p class="max-w-4xl mx-auto">We deliver deep insights backed by robust analytics to guide impactful decisions and long-term growth strategies.</p>
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 px-4">
+          <img src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/slide1.jpeg" alt="Insight Analysis Image 1" class="rounded-lg shadow-lg">
+          <img src="image data analytics.png" alt="Insight Analysis Image 2" class="rounded-lg shadow-lg">
+        </div>
+    </div>
+  </section>
 
-  <section id="service3" class="text-white text-center min-h-screen flex flex-col justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?advertising,track'); background-size: cover; background-position: center;">
-    <div class="bg-black bg-opacity-60 py-12 px-4">
-      <h2 class="text-4xl font-bold mb-4">Advertisement Tracking</h2>
-      <p class="max-w-4xl mx-auto">Monitor and evaluate your advertisement placements across media platforms to understand reach, frequency, and effectiveness.</p>
-    </div>
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
-      <img src="https://source.unsplash.com/400x300/?marketing,ads" class="rounded-lg shadow-lg">
-      <img src="https://source.unsplash.com/400x300/?tv,broadcast" class="rounded-lg shadow-lg">
-    </div>
-  </section>
+  <section id="service3" class="text-white text-center min-h-screen flex flex-col justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?advertising,track'); background-size: cover; background-position: center;">
+    <div class="bg-black bg-opacity-60 py-12 px-4">
+      <h2 class="text-4xl font-bold mb-4">Advertisement Tracking</h2>
+      <p class="max-w-4xl mx-auto">Monitor and evaluate your advertisement placements across media platforms to understand reach, frequency, and effectiveness.</p>
+    </div>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 px-4">
+      <img src="https://source.unsplash.com/400x300/?marketing,ads" alt="Marketing Ads" class="rounded-lg shadow-lg">
+      <img src="https://source.unsplash.com/400x300/?tv,broadcast" alt="TV Broadcast" class="rounded-lg shadow-lg">
+    </div>
+  </section>
 
-  <section id="contact" class="py-20 px-6 bg-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
-      <p class="text-gray-600 mb-6">Reach out to us today.</p>
-      <a href="mailto:hello@globetrack.co.ke" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">Email Us</a>
-      <div class="mt-6 space-x-4">
-        <a href="#" class="inline-block"><img src="facebook logo.jpg" alt="Facebook" class="h-2 inline"></a>
-        <a href="#" class="inline-block"><img src="linkedin logo.png" alt="LinkedIn" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="x logo.jpg" alt="X Twitter" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="youtube logo.png" alt="YouTube" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="tiktok logo.png" alt="TikTok" class="h-6 inline"></a>
-        <a href="#" class="inline-block"><img src="instagram logo.jpg" alt="Instagram" class="h-2 inline"></a>
-      </div>
-    </div>
-  </section>
+  <section id="contact" class="py-20 px-6 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
+      <p class="text-gray-600 mb-6">Reach out to us today.</p>
+      <a href="mailto:hello@globetrack.co.ke" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">Email Us</a>
+      <div class="mt-6 space-x-4">
+        <a href="#" class="inline-block"><img src="facebook logo.jpg" alt="Facebook" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="linkedin logo.png" alt="LinkedIn" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="x logo.jpg" alt="X Twitter" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="youtube logo.png" alt="YouTube" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="tiktok logo.png" alt="TikTok" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="instagram logo.jpg" alt="Instagram" class="h-6 inline"></a>
+      </div>
+    </div>
+  </section>
 
-  <footer class="bg-black text-white text-center py-12">
-    <nav class="mb-4 space-x-6">
-      <a href="#about" class="hover:underline">About</a>
-      <a href="#work" class="hover:underline">Work</a>
-      <a href="#contact" class="hover:underline">Contact</a>
-    </nav>
-    <p class="text-lg">Take Lead Of Your Narrative</p>
-    <a href="#" class="mt-4 inline-block text-white underline hover:text-gray-400">Contact Us: +254 720 704 818</a>
-    <p class="text-sm mt-6 text-gray-400">© 2025 Globetrack</p>
-  </footer>
-  <script>
-    AOS.init();
-    const track = document.getElementById('carousel-track');
-    const indicators = document.getElementById('carousel-indicators');
-    const totalSlides = 5;
-    let currentSlide = 0;
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('div');
-      dot.addEventListener('click', () => {
-        currentSlide = i;
-        updateSlide();
-      });
-      indicators.appendChild(dot);
-    }
-    function updateSlide() {
-      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      Array.from(indicators.children).forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
-    }
-    updateSlide();
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlide();
-    }, 4000);
-  </script>
+  <footer class="bg-black text-white text-center py-12">
+    <nav class="mb-4 space-x-6">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#work" class="hover:underline">Work</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+    </nav>
+    <p class="text-lg">Take Lead Of Your Narrative</p>
+    <a href="#" class="mt-4 inline-block text-white underline hover:text-gray-400">Contact Us: +254 720 704 818</a>
+    <p class="text-sm mt-6 text-gray-400">© 2025 Globetrack</p>
+  </footer>
+
+  <script>
+    AOS.init();
+    const track = document.getElementById('carousel-track');
+    const indicators = document.getElementById('carousel-indicators');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+
+    // Set correct width for the track
+    if (track) {
+      track.style.width = `${totalSlides * 100}vw`;
+    }
+
+    if (indicators) {
+        for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.addEventListener('click', () => {
+            currentSlide = i;
+            updateSlide();
+        });
+        indicators.appendChild(dot);
+        }
+    }
+    
+    function updateSlide() {
+      if (track) {
+        track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      }
+      if (indicators) {
+        Array.from(indicators.children).forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentSlide);
+        });
+      }
+    }
+
+    // Initial call to set the first slide and indicator
+    updateSlide();
+
+    // Auto-play interval
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }, 4000);
+  </script>
 </body>
 </html>
