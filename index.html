@@ -258,9 +258,9 @@
     </div>
   </section>
 
-  <section id="service3" class="text-white text-center min-h-screen flex flex-col justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?advertising,track'); background-size: cover; background-position: center;">
-    <div class="section-overlay">
-      <h2 class="text-4xl font-bold mb-4 section-title-blend">Advertisement Tracking</h2>
+ <section id="service3" class="text-white text-center min-h-screen flex flex-col justify-center" style="background-image: url('https://source.unsplash.com/1600x900/?advertising,track'); background-size: cover; background-position: center;">
+    <div class="bg-black bg-opacity-60 py-12 px-4">
+      <h2 class="text-4xl font-bold mb-4">Advertisement Tracking</h2>
       <p class="max-w-4xl mx-auto">Monitor and evaluate your advertisement placements across media platforms to understand reach, frequency, and effectiveness.</p>
     </div>
     <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 mt-10 px-4">
@@ -273,4 +273,53 @@
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="text-3xl font-semibold mb-4">Contact Us</h2>
       <p class="text-gray-600 mb-6">Reach out to us today.</p>
-      <a href="mailto:hello@globetrack.co.ke" cla
+      <a href="mailto:hello@globetrack.co.ke" class="text-white bg-black px-6 py-3 rounded-full hover:bg-gray-800 transition">Email Us</a>
+      <div class="mt-6 space-x-4">
+        <a href="#" class="inline-block"><img src="facebook logo.jpg" alt="Facebook" class="h-2 inline"></a>
+        <a href="#" class="inline-block"><img src="linkedin logo.png" alt="LinkedIn" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="x logo.jpg" alt="X Twitter" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="youtube logo.png" alt="YouTube" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="tiktok logo.png" alt="TikTok" class="h-6 inline"></a>
+        <a href="#" class="inline-block"><img src="instagram logo.jpg" alt="Instagram" class="h-2 inline"></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black text-white text-center py-12">
+    <nav class="mb-4 space-x-6">
+      <a href="#about" class="hover:underline">About</a>
+      <a href="#work" class="hover:underline">Work</a>
+      <a href="#contact" class="hover:underline">Contact</a>
+    </nav>
+    <p class="text-lg">Take Lead Of Your Narrative</p>
+    <a href="#" class="mt-4 inline-block text-white underline hover:text-gray-400">Contact Us: +254 720 704 818</a>
+    <p class="text-sm mt-6 text-gray-400">© 2025 Globetrack</p>
+  </footer>
+  <script>
+    AOS.init();
+    const track = document.getElementById('carousel-track');
+    const indicators = document.getElementById('carousel-indicators');
+    const totalSlides = 5;
+    let currentSlide = 0;
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        updateSlide();
+      });
+      indicators.appendChild(dot);
+    }
+    function updateSlide() {
+      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      Array.from(indicators.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+    updateSlide();
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }, 4000);
+  </script>
+</body>
+</html>
