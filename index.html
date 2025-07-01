@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&family=Young+Serif&display=swap" rel="stylesheet">
 
+  <!-- ✅ Tailwind + AOS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -33,7 +34,7 @@
     header.sticky {
       position: sticky;
       top: 0;
-      background-color: #facc15; /* Tailwind bg-yellow */
+      background-color: white;
       z-index: 9999;
     }
 
@@ -132,26 +133,58 @@
       opacity: 1;
       background-color: yellow;
     }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      right: 1rem;
+      background-color: white;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    .nav-links.active {
+      display: flex;
+    }
+
+    .search-box {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 1rem;
+      background-color: white;
+      padding: 0.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-box input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
+
 <body class="bg-white text-black font-sans leading-relaxed">
-  <header class="sticky top-0 border-b shadow-sm z-50">
-    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between bg-yellow">
+
+  <!-- ✅ Sticky Header with Hamburger + Search -->
+  <header class="sticky border-b shadow-sm z-50">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between bg-white">
       <a href="#" id="scrollToTop"><img src="logo1.png" alt="Logo" class="h-10"></a>
-      <script>
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-    document.getElementById("searchBox").style.display = "none";
-  }
-
-  function toggleSearch() {
-    const box = document.getElementById("searchBox");
-    box.style.display = box.style.display === "block" ? "none" : "block";
-    document.getElementById("navLinks").classList.remove("active");
-  }
-</script>
-</body>
-
+      <div class="flex items-center gap-4">
+        <span class="cursor-pointer text-xl" onclick="toggleSearch()">🔍</span>
+        <span class="cursor-pointer text-3xl" onclick="toggleMenu()">☰</span>
+      </div>
+      <ul class="nav-links p-2 text-sm" id="navLinks">
+        <li><a href="#about" class="block px-4 py-2">About</a></li>
+        <li><a href="#services" class="block px-4 py-2">Services</a></li>
+        <li><a href="#work" class="block px-4 py-2">Work</a></li>
+        <li><a href="#contact" class="block px-4 py-2">Contact</a></li>
+      </ul>
+      <div class="search-box" id="searchBox">
+        <input type="text" placeholder="Search..." />
+      </div>
     </div>
   </header>
 
@@ -242,6 +275,20 @@
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+ <!-- ✅ JS at Bottom -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+      document.getElementById("searchBox").style.display = "none";
+    }
+
+    function toggleSearch() {
+      const box = document.getElementById("searchBox");
+      box.style.display = box.style.display === "block" ? "none" : "block";
+      document.getElementById("navLinks").classList.remove("active");
+    }
+
+    AOS.init();
   </script>
 </body>
   
