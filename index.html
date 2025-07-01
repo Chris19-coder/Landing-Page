@@ -171,9 +171,7 @@
     }
   </style>
 </head>
-
 <body class="bg-white text-black font-sans leading-relaxed">
-
   <header class="sticky border-b shadow-sm z-50">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between bg-white">
       <a href="#" id="scrollToTop"><img src="logo1.png" alt="Logo" class="h-10"></a>
@@ -195,7 +193,6 @@
 
   <div class="carousel" id="carousel">
     <div class="carousel-track" id="carousel-track">
-
       <!-- Slide 1 -->
       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
@@ -274,7 +271,7 @@
     <div class="carousel-indicators" id="carousel-indicators"></div>
   </div>
 
-  <!-- JavaScript -->
+  <!-- JS Section -->
   <script>
     function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
@@ -294,8 +291,30 @@
     });
 
     AOS.init();
+    const track = document.getElementById('carousel-track');
+    const indicators = document.getElementById('carousel-indicators');
+    const totalSlides = 1;
+    let currentSlide = 0;
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        updateSlide();
+      });
+      indicators.appendChild(dot);
+    }
+    function updateSlide() {
+      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      Array.from(indicators.children).forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+    updateSlide();
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlide();
+    }, 4000);
   </script>
-
 </body>
 
   <section id="about" class="py-20 bg-gray-100 text-center px-6">
