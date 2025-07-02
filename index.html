@@ -147,8 +147,17 @@
         </svg>
       </button>
 
-      <!-- Hamburger Menu Icon (mobile only) -->
-      <button onclick="toggleMenu()" class="md:hidden text-2xl" aria-label="Menu">☰</button>
+    <!-- Hamburger Icon (works for both desktop & mobile) -->
+<button id="menuToggle" class="text-2xl focus:outline-none" aria-label="Menu">☰</button>
+
+<!-- Dropdown Menu (hidden by default) -->
+<ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
+  <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a></li>
+  <li><a href="#services" class="block px-4 py-2 hover:bg-gray-100">Services</a></li>
+  <li><a href="#work" class="block px-4 py-2 hover:bg-gray-100">Work</a></li>
+  <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
+</ul>
+
     </div>
   </div>
 
@@ -582,27 +591,22 @@
     }, 4000);
   </script>
   
- <!-- JavaScript for toggles -->
-<script>
-  function toggleMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("hidden");
-  }
+ <script>
+  const toggleBtn = document.getElementById('menuToggle');
+  const dropdownMenu = document.getElementById('dropdownMenu');
 
-  function toggleSearch() {
-    const searchBar = document.getElementById("searchBar");
-    searchBar.classList.toggle("hidden");
-  }
+  toggleBtn.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('hidden');
+  });
 
-  function clearSearch() {
-    document.getElementById("searchInput").value = "";
-  }
-
-  document.getElementById("scrollToTop").addEventListener("click", function (e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  // Optional: close menu when clicking outside
+  document.addEventListener('click', function (event) {
+    if (!dropdownMenu.contains(event.target) && !toggleBtn.contains(event.target)) {
+      dropdownMenu.classList.add('hidden');
+    }
   });
 </script>
+
 
 </body>
 </html>
