@@ -588,6 +588,41 @@
     document.getElementById("searchInput").value = "";
   }
 </script>
+  
+<!-- SEARCH FUNCTIONALITY SCRIPT -->
+<script>
+  document.getElementById("searchInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const query = this.value.toLowerCase();
+      const sections = document.querySelectorAll("section");
+      let found = false;
+
+      sections.forEach(section => {
+        const text = section.innerText.toLowerCase();
+        if (!found && text.includes(query)) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          section.classList.add("ring", "ring-yellow-400", "ring-offset-2");
+          setTimeout(() => {
+            section.classList.remove("ring", "ring-yellow-400", "ring-offset-2");
+          }, 2000);
+          found = true;
+        }
+      });
+
+      if (!found) {
+        alert("No match found.");
+      }
+    }
+  });
+</script>
+
+<!-- OPTIONAL: Smooth Ring Transition Styling -->
+<style>
+  section.ring {
+    transition: box-shadow 0.3s ease-in-out;
+  }
+</style>
 
 </body>
 </html>
