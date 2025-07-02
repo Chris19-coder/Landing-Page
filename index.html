@@ -408,14 +408,14 @@ Imagine confidently demonstrating the precise ROI of every campaign, identifying
 </section>
 
 <section id="service3" class="w-full relative text-white text-center overflow-hidden">
-  <!-- This container will enforce proper height in the layout -->
-  <div class="relative w-full" style="padding-top: 56.25%;">
-    <!-- The rest stays the same -->
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('image data analytics.png');">
+  <!-- This container enforces height -->
+  <div class="relative w-full parallax-bg" style="padding-top: 56.25%;">
+    <!-- Parallax Background with fixed effect -->
+    <div class="absolute inset-0 bg-cover bg-center parallax-bg-img" style="background-image: url('image data analytics.png');">
       <div class="absolute inset-0 bg-black bg-opacity-60"></div>
 
       <div class="absolute inset-0 flex flex-col items-center justify-center px-6">
-        <h2 class="text-4xl font-bold mb-4" data-aos="fade-in">
+        <h2 class="text-4xl font-bold mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
           <span class="block text-6xl font-extrabold">Insight</span>
           <span class="block text-6xl font-extrabold text-yellow-400">Driven</span>
           <span class="block text-6xl font-extrabold">Analysis</span>
@@ -426,7 +426,7 @@ Imagine confidently demonstrating the precise ROI of every campaign, identifying
 </section>
 
 <!-- White 16:9 Text Section Below Image Section -->
-<section class="w-full bg-white text-black py-12 px-6" style="aspect-ratio: 16 / 9;">
+<section class="w-full bg-white text-black py-12 px-6" style="aspect-ratio: 16 / 9;" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
   <div class="max-w-5xl mx-auto">
     <p class="text-lg leading-relaxed">
       In today's fiercely competitive landscape, simply having data isn't enough; true success hinges on transforming that data into actionable insights. Our insight-driven analytics go beyond mere metrics, revealing the hidden patterns, underlying motivations, and future trends that truly shape your market. This means we don't just tell you what happened, but why it happened, and most importantly, what you should do next to capitalize on every opportunity.
@@ -436,16 +436,35 @@ Imagine confidently demonstrating the precise ROI of every campaign, identifying
   </div>
 </section>
 
-<section id="photo-section" class="w-full bg-white py-16 px-6">
+<section id="photo-section" class="w-full bg-white py-16 px-6" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-    <img src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/slide1.jpeg" alt=" Slide1" class="w-full h-auto object-cover rounded-xl shadow-lg">
+    <img src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/slide1.jpeg" alt="Slide1" class="w-full h-auto object-cover rounded-xl shadow-lg">
     <img src="image data analytics.png" alt="Image Data Analytics" class="w-full h-auto object-cover rounded-xl shadow-lg">
   </div>
 </section>
 
+<!-- AOS Init -->
 <script>
   AOS.init();
 </script>
+
+<!-- Add to your main CSS or inside <style> -->
+<style>
+  /* Parallax Background Effect */
+  .parallax-bg-img {
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  @media (max-width: 768px) {
+    .parallax-bg-img {
+      background-attachment: scroll; /* fallback on mobile */
+    }
+  }
+</style>
+
   
 <section id="service4" class="w-full relative text-white text-center overflow-hidden">
   <!-- This container will enforce proper height in the layout -->
