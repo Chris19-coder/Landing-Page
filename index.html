@@ -407,32 +407,29 @@ Imagine confidently demonstrating the precise ROI of every campaign, identifying
   </div>
 </section>
 
-<!-- Insight-Driven Analytics Section -->
-<section id="service3" class="w-full relative text-white text-center overflow-hidden h-screen">
-  <div class="absolute inset-0 parallax-bg-img" style="background-image: url('image data analytics.png');">
+<!-- SECTION: Insight Driven Analytics (Parallax Background & Headline) -->
+<section id="service3" class="w-full relative text-white text-center overflow-hidden min-h-screen flex items-center justify-center px-6">
+  <div class="absolute inset-0 bg-cover bg-center parallax-bg-img" style="background-image: url('image data analytics.png');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  </div>
 
-    <div class="relative z-10 flex flex-col items-center justify-center h-full px-6">
-      <h2 class="text-4xl font-bold mb-4" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
-        <span class="block text-6xl font-extrabold">Insight</span>
-        <span class="block text-6xl font-extrabold text-yellow-400">Driven</span>
-        <span class="block text-6xl font-extrabold">Analysis</span>
-      </h2>
-    </div>
+  <div class="relative z-10" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
+    <h2 class="text-4xl font-bold mb-4">
+      <span class="block text-6xl font-extrabold">Insight</span>
+      <span class="block text-6xl font-extrabold text-yellow-400">Driven</span>
+      <span class="block text-6xl font-extrabold">Analysis</span>
+    </h2>
   </div>
 </section>
 
-<!-- Scrollable Full Image with Content -->
-<section class="relative h-[120vh] bg-fixed bg-cover bg-center text-white" style="background-image: url('image data analytics.png');">
-  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div class="relative z-10 flex items-center justify-center h-full px-6" data-aos="fade-up" data-aos-duration="1200" data-aos-easing="ease-in-out">
-    <div class="max-w-5xl text-center">
-      <p class="text-lg leading-relaxed">
-        In today's fiercely competitive landscape, simply having data isn't enough; true success hinges on transforming that data into actionable insights. Our insight-driven analytics go beyond mere metrics, revealing the hidden patterns, underlying motivations, and future trends that truly shape your market.
-        <br><br>
-        By leveraging cutting-edge analytics and predictive modeling, we empower your business to make smarter, more confident decisions. This isn't guesswork; it's a strategic advantage that translates directly into measurable ROI, accelerated growth, and deep customer understanding.
-      </p>
-    </div>
+<!-- SECTION: White Text Paragraph Below Image -->
+<section class="w-full bg-white text-black py-16 px-6" style="aspect-ratio: 16 / 9;" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-out">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-lg leading-relaxed">
+      In today's fiercely competitive landscape, simply having data isn't enough; true success hinges on transforming that data into actionable insights. Our insight-driven analytics go beyond mere metrics, revealing the hidden patterns, underlying motivations, and future trends that truly shape your market. This means we don't just tell you what happened, but why it happened, and most importantly, what you should do next to capitalize on every opportunity.
+      <br><br>
+      By leveraging cutting-edge analytics and predictive modeling, we empower your business to make smarter, more confident decisions. Imagine precisely tailoring marketing campaigns to resonate deeply with your ideal customers, optimizing your spend to eliminate waste, and anticipating shifts in consumer behavior before your competitors even see them coming. This isn't guesswork; it's a strategic advantage that translates directly into measurable ROI, accelerated growth, and a profound understanding of your customer base that builds lasting loyalty.
+    </p>
   </div>
 </section>
 
@@ -441,21 +438,22 @@ Imagine confidently demonstrating the precise ROI of every campaign, identifying
   AOS.init();
 </script>
 
-<!-- Parallax CSS (Include in <style> or global CSS) -->
+<!-- Parallax CSS -->
 <style>
   .parallax-bg-img {
     background-attachment: fixed;
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
   }
 
   @media (max-width: 768px) {
     .parallax-bg-img {
-      background-attachment: scroll; /* fallback on mobile */
+      background-attachment: scroll; /* fallback for mobile */
     }
   }
 </style>
+
 
   
 <section id="service4" class="w-full relative text-white text-center overflow-hidden">
