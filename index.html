@@ -129,7 +129,6 @@
 
     .nav-links {
       display: none;
-      flex-direction: column;
       position: absolute;
       top: 100%;
       right: 1rem;
@@ -139,74 +138,33 @@
     }
 
     .nav-links.active {
-      display: flex;
-    }
-
-    .search-box {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 3rem;
-      background-color: white;
-      padding: 0.5rem;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .search-box input {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-    }
-
-    .icon-btn {
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: black;
+      display: block;
     }
   </style>
 </head>
-
 <body class="bg-white text-black font-sans leading-relaxed">
 
 <!-- Navbar -->
 <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#"><img src="logo1.png" class="h-10" alt="Logo" /></a>
-
-    <!-- Hamburger Icon (mobile only) -->
-    <button class="text-2xl md:hidden" onclick="toggleMenu()">☰</button>
-
-    <!-- Nav Links (desktop visible, mobile hidden) -->
-    <ul id="navLinks" class="hidden md:flex items-center gap-6 text-sm">
-      <li><a href="#about" class="block px-4 py-2">About</a></li>
-      <li><a href="#services" class="block px-4 py-2">Services</a></li>
-      <li><a href="#work" class="block px-4 py-2">Work</a></li>
-      <li><a href="#contact" class="block px-4 py-2">Contact</a></li>
-    </ul>
-
-    <!-- Optional Search Box (desktop only) -->
-    <div class="hidden md:block" id="searchBox">
-      <input type="text" placeholder="Search..." class="border px-2 py-1 rounded" />
+    <a href="#" id="scrollToTop"><img src="logo1.png" alt="Logo" class="h-10 cursor-pointer"></a>
+    <div class="flex items-center gap-4">
+      <!-- Search Icon -->
+      <button onclick="toggleSearch()" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+      <!-- Menu Icon -->
+      <button class="text-2xl" onclick="toggleMenu()">☰</button>
     </div>
   </div>
 
-  <!-- Mobile Nav Menu -->
-  <ul id="navLinks" class="nav-links text-sm md:hidden">
-    <li><a href="#about" class="block px-4 py-2">About</a></li>
-    <li><a href="#services" class="block px-4 py-2">Services</a></li>
-    <li><a href="#work" class="block px-4 py-2">Work</a></li>
-    <li><a href="#contact" class="block px-4 py-2">Contact</a></li>
-  </ul>
-
-  <!-- Search Bar (Hidden by Default) -->
-  <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
+  <!-- Search Bar -->
+  <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden">
     <div class="max-w-6xl mx-auto flex items-center gap-2">
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search..."
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-yellow-500"
-      />
-      <!-- Clear Button -->
+      <input id="searchInput" type="text" placeholder="Search..." class="w-full px-4 py-2 border rounded-md">
       <button onclick="clearSearch()" aria-label="Clear">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <line x1="18" y1="6" x2="6" y2="18" />
@@ -215,133 +173,40 @@
       </button>
     </div>
   </div>
+
+  <!-- Dropdown Menu (both mobile and desktop) -->
+  <ul id="navLinks" class="nav-links text-sm">
+    <li><a href="#about" class="block px-4 py-2">About</a></li>
+    <li><a href="#services" class="block px-4 py-2">Services</a></li>
+    <li><a href="#work" class="block px-4 py-2">Work</a></li>
+    <li><a href="#contact" class="block px-4 py-2">Contact</a></li>
+  </ul>
 </header>
 
+<script>
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  navLinks.classList.toggle("active");
+}
 
-  <div class="carousel" id="carousel">
-    <div class="carousel-track" id="carousel-track">
-      <!-- Slide 1 -->
-      <section class="carousel-slide">
-        <video autoplay loop muted playsinline class="video-background">
-          <source src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/fa3ee608b388482e187ce2fc60d7e333ad362d09/11904055_3840_2160_24fps%20(1)%20(1).mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-        <div data-aos="fade-up">
-          <h1 class="font-bold mb-6">
-            <span class="font-lovers">The </span>
-            <span class="font-young">differentiator </span>
-            <span class="font-lovers">your brand </span>
-            <span class="font-young">can't ignore.</span>
-          </h1>
-        </div>
-      </section>
+function toggleSearch() {
+  const searchBar = document.getElementById("searchBar");
+  searchBar.classList.toggle("hidden");
+}
 
-      <!-- Slide 2 -->
-      <section class="carousel-slide">
-        <video autoplay loop muted playsinline class="video-background">
-          <source src="Video_Generation_Dark_Skin.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-        <div data-aos="fade-up">
-          <h1 class="font-bold mb-6">
-            <span class="font-lovers">The </span>
-            <span class="font-young">differentiator </span>
-            <span class="font-lovers">your brand </span>
-            <span class="font-young">can't overlook.</span>
-          </h1>
-        </div>
-      </section>
+function clearSearch() {
+  document.getElementById("searchInput").value = "";
+}
 
-      <!-- Slide 3 -->
-      <section class="carousel-slide image-bg" style="background-image: url('9365274-hd_1920_1080_25fps.mp4');">
-        <div class="video-overlay"></div>
-        <div data-aos="fade-up">
-          <h1 class="font-bold mb-6">
-            <span class="font-lovers">The </span>
-            <span class="font-young">differentiator </span>
-            <span class="font-lovers">your </span>
-            <span class="font-young">brand MUST HAVE.</span>
-          </h1>
-        </div>
-      </section>
-
-      <!-- Slide 4 -->
-      <section class="carousel-slide image-bg" style="background-image: url('https://github.com/Chris19-coder/Landing-Page/blob/main/9365274-hd_1920_1080_25fps.mp4');">
-        <div class="video-overlay"></div>
-        <div data-aos="fade-up">
-          <h1 class="font-bold mb-6">
-            <span class="font-lovers">The </span>
-            <span class="font-young">differentiator </span>
-            <span class="font-lovers">of </span>
-            <span class="font-young">COMMUNICATION MEASUREMENT.</span>
-          </h1>
-        </div>
-      </section>
-
-      <!-- Slide 5 -->
-      <section class="carousel-slide">
-        <video autoplay loop muted playsinline class="video-background">
-          <source src="Video_Generation_Dark_Skin.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-        <div data-aos="fade-up">
-          <h1 class="font-bold mb-6">
-            <span class="font-lovers">The </span>
-            <span class="font-young">differentiator </span>
-            <span class="font-lovers">of </span>
-            <span class="font-young">media intelligence.</span>
-          </h1>
-        </div>
-      </section>
-
-    </div>
-    <div class="carousel-indicators" id="carousel-indicators"></div>
-  </div>
-
-  <!-- JS Section -->
-  <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-      document.getElementById("searchBox").style.display = "none";
-    }
-
-    function toggleSearch() {
-      const box = document.getElementById("searchBox");
-      box.style.display = box.style.display === "block" ? "none" : "block";
-      document.getElementById("navLinks").classList.remove("active");
-    }
-
-    // Smooth scroll to top
-    document.getElementById("scrollToTop").addEventListener("click", function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    AOS.init();
-    const track = document.getElementById('carousel-track');
-    const indicators = document.getElementById('carousel-indicators');
-    const totalSlides = 5;
-    let currentSlide = 0;
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('div');
-      dot.addEventListener('click', () => {
-        currentSlide = i;
-        updateSlide();
-      });
-      indicators.appendChild(dot);
-    }
-    function updateSlide() {
-      track.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      Array.from(indicators.children).forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
-    }
-    updateSlide();
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlide();
-    }, 4000);
-  </script>
+// Scroll to top handler
+const scrollToTopBtn = document.getElementById("scrollToTop");
+if (scrollToTopBtn) {
+  scrollToTopBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+</script>
 
 </body>
 
@@ -412,8 +277,14 @@
 <!-- SECTION 3: Image Grid -->
 <section id="photo-section" class="w-full bg-white py-16 px-6">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-    <img src="image monitoring studio.png" alt="Image Monitoring Studio" class="w-full h-auto object-cover rounded-xl shadow-lg">
-    <img src="https://source.unsplash.com/400x300/?media,measurement" alt="Image 2" class="w-full h-auto object-cover rounded-xl shadow-lg">
+    <picture>
+      <source srcset="image monitoring studio.webp" type="image/webp">
+      <img src="image monitoring studio.png" alt="Image Monitoring Studio" class="w-full h-auto object-cover rounded-xl shadow-lg" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw">
+    </picture>
+    <picture>
+      <source srcset="https://source.unsplash.com/400x300/?media,measurement.webp" type="image/webp">
+      <img src="https://source.unsplash.com/400x300/?media,measurement" alt="Image 2" class="w-full h-auto object-cover rounded-xl shadow-lg" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw">
+    </picture>
   </div>
 </section>
 
@@ -454,8 +325,14 @@
 <!-- SECTION 3: Photo Grid -->
 <section id="photo-section" class="w-full bg-white py-16 px-6">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-    <img src="pexels-googledeepmind-17485707.jpg" alt="Pexels Google DeepMind" class="w-full h-auto object-cover rounded-xl shadow-lg">
-    <img src="image floating window.png" alt="Image Floating Window" class="w-full h-auto object-cover rounded-xl shadow-lg">
+    <picture>
+      <source srcset="pexels-googledeepmind-17485707.webp" type="image/webp">
+      <img src="pexels-googledeepmind-17485707.jpg" alt="Pexels Google DeepMind" class="w-full h-auto object-cover rounded-xl shadow-lg" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw">
+    </picture>
+    <picture>
+      <source srcset="image floating window.webp" type="image/webp">
+      <img src="image floating window.png" alt="Image Floating Window" class="w-full h-auto object-cover rounded-xl shadow-lg" loading="lazy" sizes="(max-width: 768px) 100vw, 50vw">
+    </picture>
   </div>
 </section>
 
@@ -492,6 +369,7 @@
     </p>
   </div>
 </section>
+
 
 <!-- AOS Initialization Script -->
 <script>
