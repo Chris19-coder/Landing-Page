@@ -521,20 +521,26 @@
   }
 </style>
   
-<!-- SECTION 1: Fullscreen Image + Heading + Paragraph -->
-<section id="service4" class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
+<!-- SECTION 1: Fullscreen Image + Heading -->
+<section id="service4" class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6 overflow-hidden">
   <!-- Background Image with Overlay -->
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('advertisment image.png');">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('advertisment image.png');">
     <div class="absolute inset-0 bg-black bg-opacity-60"></div>
   </div>
 
-  <!-- Content -->
-  <div class="relative z-10 max-w-5xl text-center space-y-6" data-aos="fade-up" data-aos-duration="1000">
-    <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+  <!-- Title Content -->
+  <div class="relative z-10 text-center max-w-4xl space-y-6" data-aos="fade-up" data-aos-duration="1000">
+    <h2 class="text-4xl sm:text-6xl font-extrabold leading-tight">
       <span class="block">Advertisement</span>
       <span class="block text-yellow-400">Tracking</span>
     </h2>
-    <p class="text-lg leading-relaxed text-justify sm:text-center">
+  </div>
+</section>
+
+<!-- SECTION 2: White Background Text (16:9) -->
+<section class="w-full bg-white text-black py-12 px-6" style="aspect-ratio: 16 / 9;">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-lg leading-relaxed text-justify">
       In today's intricate digital advertising landscape, effective advertisement tracking is not merely a supplementary tool but the very bedrock of a successful marketing strategy. It is the sophisticated science of understanding user engagement from the initial impression to the final conversion, employing a multi-faceted approach that encompasses everything from UTM parameters and tracking pixels to first-party cookies and advanced server-side tracking. This granular level of insight allows for the meticulous dissection of campaign performance, identifying not just which channels are driving traffic, but which specific ad creatives are resonating with high-value audience segments. In an era of increasing privacy concerns and the deprecation of third-party cookies, a profound understanding of privacy-centric measurement solutions, such as conversion modeling and the strategic implementation of first-party data, is paramount. Mastering these techniques is essential for navigating the complexities of regulations like GDPR and CCPA, ensuring compliance while simultaneously maximizing return on investment through precise attribution and data-driven optimization.
       <br><br>
       Leveraging this comprehensive expertise in advertisement tracking can be the definitive competitive advantage for your business. By moving beyond vanity metrics and embracing a holistic view of the customer journey, we can unlock actionable insights that inform every facet of your advertising efforts. This means no more wasted ad spend on underperforming campaigns or ambiguous results. Instead, we will implement a robust tracking framework that provides crystal-clear attribution, allowing us to allocate your budget with surgical precision to the channels and strategies delivering tangible outcomes. This data-first approach not only empowers you to understand your customers on a deeper level but also enables the creation of highly personalized and effective campaigns that resonate with your target audience, fostering loyalty and driving sustainable growth in a constantly evolving digital marketplace.
@@ -542,7 +548,7 @@
   </div>
 </section>
 
-<!-- SECTION 2: White Background Photo Grid -->
+<!-- SECTION 3: White Background Photo Grid -->
 <section id="photo-section" class="w-full bg-white py-16 px-6">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
     <img src="https://raw.githubusercontent.com/Chris19-coder/Landing-Page/main/slide1.jpeg" alt="Slide1" class="w-full h-auto object-cover rounded-xl shadow-lg">
