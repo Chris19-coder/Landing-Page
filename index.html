@@ -585,22 +585,23 @@
  <!-- JavaScript for toggles -->
 <script>
   function toggleMenu() {
-    const navLinks = document.querySelectorAll("#navLinks")[1]; // Target mobile navLinks
-    navLinks.classList.toggle("active");
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("hidden");
   }
 
   function toggleSearch() {
     const searchBar = document.getElementById("searchBar");
     searchBar.classList.toggle("hidden");
-    document.getElementById("searchInput")?.focus();
   }
 
   function clearSearch() {
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput) searchInput.value = "";
+    document.getElementById("searchInput").value = "";
   }
 
-  AOS.init();
+  document.getElementById("scrollToTop").addEventListener("click", function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 </script>
 
 </body>
