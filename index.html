@@ -217,17 +217,36 @@
   </div>
 </header>
 
-      <ul class="nav-links text-sm" id="navLinks">
-        <li><a href="#about" class="block px-4 py-2">About</a></li>
-        <li><a href="#services" class="block px-4 py-2">Services</a></li>
-        <li><a href="#work" class="block px-4 py-2">Work</a></li>
-        <li><a href="#contact" class="block px-4 py-2">Contact</a></li>
-      </ul>
-      <div class="search-box" id="searchBox">
-        <input type="text" placeholder="Search..." />
-      </div>
+      <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#"><img src="logo1.png" class="h-10" alt="Logo" /></a>
+
+    <!-- Hamburger Button (Mobile) -->
+    <button class="text-2xl md:hidden" onclick="toggleMenu()">☰</button>
+
+    <!-- Nav Links -->
+    <ul id="navLinks" class="hidden absolute top-full left-0 w-full bg-white border-t md:static md:flex md:items-center md:gap-6 md:border-none md:w-auto text-sm z-50">
+      <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a></li>
+      <li><a href="#services" class="block px-4 py-2 hover:bg-gray-100">Services</a></li>
+      <li><a href="#work" class="block px-4 py-2 hover:bg-gray-100">Work</a></li>
+      <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
+    </ul>
+
+    <!-- Search Box (optional) -->
+    <div class="hidden md:block" id="searchBox">
+      <input type="text" placeholder="Search..." class="border px-2 py-1 rounded" />
     </div>
-  </header>
+  </div>
+</header>
+
+<!-- JavaScript: place this before </body> -->
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('hidden');
+  }
+</script>
+
 
   <div class="carousel" id="carousel">
     <div class="carousel-track" id="carousel-track">
