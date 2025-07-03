@@ -53,6 +53,69 @@
       text-align: center;
       scroll-snap-align: start; /* CRUCIAL: ensures each slide aligns to the start */
     }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media Intelligence That Moves You</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lovers+Quarrel&family=Young+Serif&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS & AOS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .font-lovers {
+      font-family: 'Lovers Quarrel', cursive;
+    }
+
+    .font-young {
+      font-family: 'Young Serif', serif;
+    }
+
+    .carousel {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s ease-in-out;
+      width: 500vw;
+      height: 100%;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 1rem;
+      color: white;
+      text-align: center;
+    }
+
+    .carousel-slide.image-bg {
+      background-size: cover;
+      background-position: center;
+    }
 
     .video-background {
       position: absolute;
@@ -60,8 +123,8 @@
       left: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
       z-index: 0;
-      object-fit: cover; /* Default for desktop: cover the whole screen */
     }
 
     .video-overlay {
@@ -79,97 +142,105 @@
       z-index: 10;
     }
 
-    /* --- Responsive Typography --- */
     .carousel-slide h1 {
       font-size: 1.8rem;
     }
+
     @media (min-width: 768px) {
-      .carousel-slide h1 { font-size: 3rem; }
+      .carousel-slide h1 {
+        font-size: 3rem;
+      }
     }
+
     @media (min-width: 1024px) {
-      .carousel-slide h1 { font-size: 4rem; }
-    }
-
-    /* --- MOBILE STYLES (Your Specific Request) --- */
-    @media (max-width: 768px) {
-      /* On mobile, we change the body to center the carousel */
-      body {
-        display: flex;
-        align-items: center; /* Vertically center */
-        min-height: 100vh;
-      }
-
-      /* Force the carousel into a 16:9 aspect ratio box */
-      .carousel {
-        height: auto; /* Height is determined by aspect ratio now */
-        aspect-ratio: 16 / 9;
-        border-radius: 12px; /* Optional: adds a nice modern curve */
-        margin: 0 auto; /* Horizontally center */
-      }
-      
-      .carousel-slide {
-        height: 100%; /* Slide height now matches the carousel container */
-      }
-
-      .video-background {
-        /* This is the key change for your request */
-        /* It fits the entire video without cropping or stretching */
-        object-fit: contain; 
+      .carousel-slide h1 {
+        font-size: 4rem;
       }
     }
-    
-    /* We no longer need carousel indicators as scrolling is natural */
+
     .carousel-indicators {
-      display: none;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+
+    .carousel-indicators div {
+      width: 10px;
+      height: 10px;
+      border-radius: 9999px;
+      background-color: white;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    .carousel-indicators .active {
+      opacity: 1;
+      background-color: yellow;
     }
   </style>
 </head>
 
+  <!-- Navbar -->
+<header class="sticky top-0 z-50 bg-white border-b shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" id="scrollToTop">
+      <img src="logo1.png" alt="Logo" class="h-10 cursor-pointer">
+    </a>
+
+    <!-- Right Icons: Search and Menu -->
+    <div class="flex items-center gap-4">
+      <!-- Search Icon (black hollow lens) -->
+      <button onclick="toggleSearch()" aria-label="Search">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+
+    <!-- Hamburger Icon (works for both desktop & mobile) -->
+<button id="menuToggle" class="text-2xl focus:outline-none" aria-label="Menu">☰</button>
+
+<!-- Dropdown Menu (hidden by default) -->
+<ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
+  <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a></li>
+  <li><a href="#services" class="block px-4 py-2 hover:bg-gray-100">Services</a></li>
+  <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
+</ul>
+
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+<div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
+  <div class="max-w-6xl mx-auto flex items-center gap-2">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search..."
+      class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-yellow-500"
+    />
+    <!-- Clear Button -->
+    <button onclick="clearSearch()" aria-label="Clear">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+
+</header>
+
 <body>
-  <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#" id="scrollToTop">
-        <img src="logo1.png" alt="Logo" class="h-10 cursor-pointer">
-      </a>
-
-      <div class="flex items-center gap-4">
-        <button onclick="toggleSearch()" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </button>
-
-        <button id="menuToggle" class="text-2xl focus:outline-none" aria-label="Menu">☰</button>
-
-        <ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
-          <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About</a></li>
-          <li><a href="#services" class="block px-4 py-2 hover:bg-gray-100">Services</a></li>
-          <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
-      <div class="max-w-6xl mx-auto flex items-center gap-2">
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Search..."
-          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-yellow-500"
-        />
-        <button onclick="clearSearch()" aria-label="Clear">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="carousel" id="carousel">
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carousel-track">
+      <!-- Slide 1 -->
       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
           <source src="future2.mp4" type="video/mp4">
@@ -185,6 +256,7 @@
         </div>
       </section>
 
+      <!-- Slide 2 -->
       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
           <source src="Bouncyvid.mp4" type="Video/mp4">
@@ -200,10 +272,11 @@
         </div>
       </section>
 
+      <!-- Slide 3 -->
       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
           <source src="49311-459186586_small.mp4" type="Video/mp4">
-        </video>
+           </video>
         <div class="video-overlay"></div>
         <div data-aos="fade-up">
           <h1 class="font-bold mb-6">
@@ -215,11 +288,12 @@
         </div>
       </section>
 
-      <section class="carousel-slide">
+      <!-- Slide 4 -->
+       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
           <source src="48420-453832153_small.mp4" type="Video/mp4">
-        </video>
-        <div class="video-overlay"></div> <div data-aos="fade-up">
+           </video>
+        <div data-aos="fade-up">
           <h1 class="font-bold mb-6">
             <span class="font-lovers">The </span>
             <span class="font-young">differentiator </span>
@@ -229,6 +303,7 @@
         </div>
       </section>
 
+      <!-- Slide 5 -->
       <section class="carousel-slide">
         <video autoplay loop muted playsinline class="video-background">
           <source src="future1.mp4" type="Video/mp4">
@@ -244,7 +319,8 @@
         </div>
       </section>
     </div>
-  </main>
+    <div class="carousel-indicators" id="carousel-indicators"></div>
+  </div>
   
 </body>
 
