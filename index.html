@@ -691,6 +691,31 @@
   section.ring {
     transition: box-shadow 0.3s ease-in-out;
   }
+
+/* --- MOBILE STYLES FOR 16:9 CAROUSEL --- */
+/* Add this entire block to the end of your <style> tag. */
+@media (max-width: 768px) {
+  /* This targets the main container of your carousel */
+  .carousel {
+    /* This is the modern way to create a perfect 16:9 ratio box */
+    aspect-ratio: 16 / 9;
+    
+    /* We override the 100vh to let aspect-ratio control the height */
+    height: auto; 
+  }
+
+  /* This ensures the individual slides correctly fill the new 16:9 container */
+  .carousel-slide {
+    height: 100%;
+  }
+
+  /* This is the most important rule for your request. */
+  /* It forces the video to fit entirely inside the container without being cropped or stretched. */
+  .video-background {
+    object-fit: contain;
+  }
+}
+  
 </style>
 
 </body>
