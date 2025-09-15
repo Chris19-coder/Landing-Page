@@ -340,22 +340,22 @@
         <div class="bg-gray-100 p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
           <p class="text-sm mb-4">Our media monitoring solution gives you real-time visibility across broadcast, print, online, and social media — empowering your brand with the intelligence to respond, adapt, and lead.</p>
-          <a href="#service1" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+          <a href="service1.html" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
         </div>
         <div class="bg-gray-100 p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
           <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
-          <a href="#service2" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+          <a href="service2.html"class="text-yellow-600 hover:underline font-medium">Learn More →</a>
         </div>
         <div class="bg-gray-100 p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
           <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
-          <a href="#service3" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+          <a href="service3.html" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
         </div>
         <div class="bg-gray-100 p-6 rounded-lg shadow">
           <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
           <p class="text-sm mb-4">Track ad placement performance across channels in real time.</p>
-          <a href="#service4" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
+          <a href="service4.html" class="text-yellow-600 hover:underline font-medium">Learn More →</a>
         </div>
       </div>
     </div>
@@ -364,15 +364,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Media Monitoring | GlobeTrack International</title>
-  <link href="assets/styles.css" rel="stylesheet" />
-</head>
-<body class="bg-white text-black">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Monitoring | GlobeTrack</title>
 
-  <!-- SECTION 1: Media Monitoring Title on Background Image -->
-  <section id="service1" class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- SECTION 1: Title on Background Image -->
+  <section class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
     <!-- Background image with dark overlay -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('image monitoring studio.png');">
       <div class="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -387,7 +393,7 @@
     </div>
   </section>
 
-  <!-- SECTION 2: Paragraph Text on White Background -->
+  <!-- SECTION 2: Paragraph Text on White Background (16:9 ratio) -->
   <section class="w-full bg-white text-black px-6 py-12" style="aspect-ratio: 16 / 9;">
     <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
       <p class="text-lg leading-relaxed text-justify sm:text-center">
@@ -398,29 +404,33 @@
     </div>
   </section>
 
-  <!-- Back to Home -->
-  <div class="text-center py-6">
-    <a href="index.html" class="px-4 py-2 bg-blue-600 text-white rounded-lg">← Back to Home</a>
-  </div>
+  <!-- AOS Init -->
+  <script>
+    AOS.init();
+  </script>
 
 </body>
 </html>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strategic Communication Measurement | GlobeTrack International</title>
-  <link href="assets/styles.css" rel="stylesheet" />
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Communication Measurement | GlobeTrack</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 </head>
-<body class="bg-white text-black">
+<body class="bg-gray-50 text-gray-900">
 
   <!-- SECTION 1: Title on Background Image -->
-  <section id="service2" class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
+  <section class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
     <!-- Background image with overlay -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('image floating window.png');">
       <div class="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -441,32 +451,43 @@
       <p class="text-lg leading-relaxed text-justify sm:text-center">
         As you navigate a landscape saturated with information, understanding the true impact of your communication is no longer a luxury – it's a strategic imperative. Our approach to strategic communication measurement provides you with undeniable proof of performance, translating your communication efforts into tangible business outcomes. We move beyond simple metrics to uncover the "why" behind audience reactions, revealing genuine shifts in perception, behavior, and reputation that directly support your overarching organizational goals.
         <br><br>
-        Imagine confidently demonstrating the precise ROI of every campaign, identifying the exact messages that resonate with key stakeholders, and proactively adapting your strategy to maximize influence. With our insights, you gain the power to optimize resource allocation, enhance your brand's credibility, and build a measurable pathway to achieving your strategic objecti
+        Imagine confidently demonstrating the precise ROI of every campaign, identifying the exact messages that resonate with key stakeholders, and proactively adapting your strategy to maximize influence. With our insights, you gain the power to optimize resource allocation, enhance your brand's credibility, and build a measurable pathway to achieving your strategic objectives. We equip you to transform your communication from an art into a powerful, data-driven science, ensuring every word, every campaign, and every interaction builds meaningful value for your organization.
+      </p>
+    </div>
+  </section>
 
+  <!-- AOS Init -->
+  <script>
+    AOS.init();
+  </script>
+
+</body>
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Insight-Driven Analysis</title>
-  
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-</head>
-<body class="font-sans antialiased">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insight-Driven Analysis | GlobeTrack</title>
 
-  <!-- SECTION 1: Insight-Driven Analytics Title Over Image -->
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <!-- SECTION 1: Title on Background Image -->
   <section class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
-    <!-- Background Image with Overlay -->
+    <!-- Background Image -->
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('image data analytics.png');">
       <div class="absolute inset-0 bg-black bg-opacity-60"></div>
     </div>
 
-    <!-- Title Content -->
+    <!-- Title -->
     <div class="relative z-10 text-center" data-aos="fade-up" data-aos-duration="1000">
       <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">
         <span class="block">Insight</span>
@@ -476,7 +497,7 @@
     </div>
   </section>
 
-  <!-- SECTION 2: Text on Separate 16:9 White Background -->
+  <!-- SECTION 2: Paragraph -->
   <section class="w-full bg-white text-black px-6 py-12" style="aspect-ratio: 16 / 9;">
     <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
       <p class="text-lg leading-relaxed text-justify sm:text-center">
@@ -487,48 +508,47 @@
     </div>
   </section>
 
-  <!-- AOS Initialization -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- AOS Init -->
   <script>
     AOS.init();
   </script>
+
 </body>
 </html>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Advertisement Tracking</title>
-  
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- AOS Animation Library -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advertisement Tracking | GlobeTrack</title>
 
-  <!-- Global CSS: Optional scrollbar styling -->
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Optional scrollbar styling -->
   <style>
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
+    ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.4);
       border-radius: 3px;
     }
   </style>
 </head>
-<body class="font-sans antialiased">
+<body class="bg-gray-50 text-gray-900">
 
-  <!-- SECTION 1: Fullscreen Image + Heading -->
-  <section class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6 overflow-hidden">
-    <!-- Background Image with Overlay -->
+  <!-- SECTION 1: Title on Background Image -->
+  <section class="w-full min-h-screen relative text-white flex items-center justify-center px-4 sm:px-6">
+    <!-- Background -->
     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('advertisment image.png');">
       <div class="absolute inset-0 bg-black bg-opacity-60"></div>
     </div>
 
-    <!-- Title Content -->
+    <!-- Title -->
     <div class="relative z-10 text-center max-w-4xl space-y-6" data-aos="fade-up" data-aos-duration="1000">
       <h2 class="text-4xl sm:text-6xl font-extrabold leading-tight">
         <span class="block">Advertisement</span>
@@ -537,9 +557,9 @@
     </div>
   </section>
 
-  <!-- SECTION 2: White Background Text (16:9) -->
+  <!-- SECTION 2: Paragraph -->
   <section class="w-full bg-white text-black py-12 px-6" style="aspect-ratio: 16 / 9;">
-    <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
+    <div class="max-w-5xl mx-auto">
       <p class="text-lg leading-relaxed text-justify sm:text-center">
         In today's intricate digital advertising landscape, effective advertisement tracking is not merely a supplementary tool but the very bedrock of a successful marketing strategy. It is the sophisticated science of understanding user engagement from the initial impression to the final conversion, employing a multi-faceted approach that encompasses everything from UTM parameters and tracking pixels to first-party cookies and advanced server-side tracking. This granular level of insight allows for the meticulous dissection of campaign performance, identifying not just which channels are driving traffic, but which specific ad creatives are resonating with high-value audience segments. In an era of increasing privacy concerns and the deprecation of third-party cookies, a profound understanding of privacy-centric measurement solutions, such as conversion modeling and the strategic implementation of first-party data, is paramount. Mastering these techniques is essential for navigating the complexities of regulations like GDPR and CCPA, ensuring compliance while simultaneously maximizing return on investment through precise attribution and data-driven optimization.
         <br><br>
@@ -775,4 +795,5 @@
 
 </body>
 </html>
+
 
