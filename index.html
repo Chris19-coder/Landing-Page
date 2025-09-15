@@ -84,15 +84,64 @@
       </div>
 
       <!-- Dropdown Menu -->
-      <ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
-        <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100" data-link="home">Home</a></li>
-        <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100" data-link="service1">Media Monitoring</a></li>
-        <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100" data-link="service2">Strategic Communicatin Measurement</a></li>
-        <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100" data-link="service3">Insight Driven Analysis</a></li>
-        <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100" data-link="service4">Advertisment Tracking</a></li>
-        <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100" data-link="contact">Contact</a></li>
-      </ul>
-    </div>
+<!-- Dropdown Menu -->
+<ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
+  <li><a href="#home" class="block px-4 py-2 hover:bg-gray-100" data-link="home">Home</a></li>
+  <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100" data-link="about">About Us</a></li>
+
+  <!-- Our Services with Submenu -->
+  <li class="relative">
+    <button 
+      onclick="toggleSubmenu(event)" 
+      class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-100 focus:outline-none"
+    >
+      Our Services 
+      <span id="arrowIcon" class="ml-2 transform transition-transform duration-500">▾</span>
+    </button>
+    <ul id="servicesSubmenu" 
+        class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white shadow-lg rounded-lg w-full text-sm hidden">
+      <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100" data-link="service1">Media Monitoring</a></li>
+      <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100" data-link="service2">Strategic Communication Measurement</a></li>
+      <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100" data-link="service3">Insight Driven Analysis</a></li>
+      <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100" data-link="service4">Advertisement Tracking</a></li>
+    </ul>
+  </li>
+
+  <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100" data-link="contact">Contact Us</a></li>
+</ul>
+
+<!-- Submenu Toggle Script -->
+<script>
+  function toggleSubmenu(event) {
+    event.stopPropagation(); // Prevent immediate close when clicking button
+    const submenu = document.getElementById("servicesSubmenu");
+    const arrow = document.getElementById("arrowIcon");
+
+    if (submenu.classList.contains("max-h-0")) {
+      submenu.classList.remove("hidden");
+      submenu.classList.remove("max-h-0");
+      submenu.classList.add("max-h-96");
+      arrow.classList.add("rotate-180");
+    } else {
+      submenu.classList.add("max-h-0");
+      arrow.classList.remove("rotate-180");
+      setTimeout(() => submenu.classList.add("hidden"), 500); // wait for animation
+    }
+  }
+
+  // Close submenu if clicking outside
+  document.addEventListener("click", function(event) {
+    const submenu = document.getElementById("servicesSubmenu");
+    const arrow = document.getElementById("arrowIcon");
+    if (!submenu.contains(event.target) && !event.target.closest("button")) {
+      if (!submenu.classList.contains("max-h-0")) {
+        submenu.classList.add("max-h-0");
+        arrow.classList.remove("rotate-180");
+        setTimeout(() => submenu.classList.add("hidden"), 500);
+      }
+    }
+  });
+</script>
 
     <!-- Search Bar (hidden by default) -->
     <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
@@ -125,9 +174,9 @@
           <div data-aos="fade-up">
             <h1 class="font-bold mb-6 text-2xl md:text-4xl">
               <span class="font-lovers">The </span>
-              <span class="font-young">differentiator </span>
-              <span class="font-lovers">your brand </span>
-              <span class="font-young">can't ignore.</span>
+              <span class="font-young">Differentiator </span>
+              <span class="font-lovers">Your Brand </span>
+              <span class="font-young">Can't Ignore.</span>
             </h1>
           </div>
         </section>
@@ -141,9 +190,9 @@
           <div data-aos="fade-up">
             <h1 class="font-bold mb-6 text-2xl md:text-4xl">
               <span class="font-lovers">The </span>
-              <span class="font-young">differentiator </span>
-              <span class="font-lovers">your brand </span>
-              <span class="font-young">can't overlook.</span>
+              <span class="font-young">Differentiator </span>
+              <span class="font-lovers">Your Brand </span>
+              <span class="font-young">CAN'T OVERLOOK.</span>
             </h1>
           </div>
         </section>
@@ -157,7 +206,7 @@
           <div data-aos="fade-up">
             <h1 class="font-bold mb-6 text-2xl md:text-4xl">
               <span class="font-lovers">The </span>
-              <span class="font-young">differentiator </span>
+              <span class="font-young">Differentiator </span>
               <span class="font-lovers">your </span>
               <span class="font-young">brand MUST HAVE.</span>
             </h1>
@@ -173,7 +222,7 @@
           <div data-aos="fade-up">
             <h1 class="font-bold mb-6 text-2xl md:text-4xl">
               <span class="font-lovers">The </span>
-              <span class="font-young">differentiator </span>
+              <span class="font-young">Differentiator </span>
               <span class="font-lovers">of </span>
               <span class="font-young">COMMUNICATION MEASUREMENT.</span>
             </h1>
@@ -189,9 +238,9 @@
           <div data-aos="fade-up">
             <h1 class="font-bold mb-6 text-2xl md:text-4xl">
               <span class="font-lovers">The </span>
-              <span class="font-young">differentiator </span>
+              <span class="font-young">Differentiator </span>
               <span class="font-lovers">of </span>
-              <span class="font-young">media intelligence.</span>
+              <span class="font-young">MEDIA INTELLIGENCE.</span>
             </h1>
           </div>
         </section>
@@ -344,7 +393,6 @@
             <br><br>
             By harnessing this deep expertise in media monitoring, your organization can transition from a reactive to a proactive stance, effectively shaping your brand narrative rather than being defined by it. This means moving beyond mere data collection to the strategic application of insights that drive tangible business outcomes. We will implement a robust monitoring framework that serves as your early warning system, allowing us to preemptively address negative sentiment before it escalates into a full-blown crisis and to amplify positive stories to bolster your reputation. This intelligence will also illuminate new market opportunities, reveal the strategies of your competitors, and provide invaluable feedback for product development and customer service enhancement. Ultimately, this strategic approach to media monitoring empowers you to make more informed decisions, mitigate risks, and build a resilient brand that not only weathers the storms of public opinion but thrives in the dynamic and ever-evolving media environment.
           </p>
-          </p>
   </div>
 </section>
 
@@ -389,6 +437,8 @@
           <p class="text-lg leading-relaxed text-justify sm:text-center">
             As you navigate a landscape saturated with information, understanding the true impact of your communication is no longer a luxury – it's a strategic imperative. Our approach to strategic communication measurement provides you with undeniable proof of performance, translating your communication efforts into tangible business outcomes...
           </p>
+  </div>
+</section>
 
           <div class="text-center mt-8">
             <button class="inline-block px-5 py-2 bg-gray-800 text-white rounded" data-link="home">← Back to Home</button>
@@ -431,7 +481,9 @@
         <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
           <p class="text-lg leading-relaxed text-justify sm:text-center">
             In today's fiercely competitive landscape, simply having data isn't enough; true success hinges on transforming that data into actionable insights...
-          </p>
+        </p>
+  </div>
+</section>
 
           <div class="text-center mt-8">
             <button class="inline-block px-5 py-2 bg-gray-800 text-white rounded" data-link="home">← Back to Home</button>
@@ -473,7 +525,9 @@
         <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
           <p class="text-lg leading-relaxed text-justify sm:text-center">
             In today's intricate digital advertising landscape, effective advertisement tracking is not merely a supplementary tool but the very bedrock of a successful marketing strategy...
-          </p>
+     </p>
+  </div>
+</section>
 
           <div class="text-center mt-8">
             <button class="inline-block px-5 py-2 bg-gray-800 text-white rounded" data-link="home">← Back to Home</button>
@@ -636,5 +690,6 @@
   </script>
 </body>
 </html>
+
 
 
