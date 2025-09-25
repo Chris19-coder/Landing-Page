@@ -245,6 +245,40 @@
       <div class="carousel-indicators" id="carousel-indicators"></div>
     </div>
 
+    <!-- Left Button -->
+    <button
+      class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
+      id="prevBtn">
+      &#10094;
+    </button>
+
+    <!-- Right Button -->
+    <button
+      class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
+      id="nextBtn">
+      &#10095;
+    </button>
+
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.carousel-slide');
+    let current = 0;
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      slides[current].classList.add('hidden');
+      current = (current - 1 + slides.length) % slides.length;
+      slides[current].classList.remove('hidden');
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      slides[current].classList.add('hidden');
+      current = (current + 1) % slides.length;
+      slides[current].classList.remove('hidden');
+    });
+  </script>
+
+</body>
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
       <div class="max-w-4xl mx-auto">
@@ -1423,6 +1457,7 @@
   </script>
 </body>
 </html>
+
 
 
 
