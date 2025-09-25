@@ -246,37 +246,62 @@
     </div>
 
     <!-- Left Button -->
-    <button
-      class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
-      id="prevBtn">
-      &#10094;
-    </button>
+<button
+  class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
+  id="prevBtn">
+  &#10094;
+</button>
 
-    <!-- Right Button -->
-    <button
-      class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
-      id="nextBtn">
-      &#10095;
-    </button>
+<!-- Right Button -->
+<button
+  class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full"
+  id="nextBtn">
+  &#10095;
+</button>
 
-  </div>
+</div>
 
-  <script>
-    const slides = document.querySelectorAll('.carousel-slide');
-    let current = 0;
+<script>
+  const slides = document.querySelectorAll('.carousel-slide');
+  let current = 0;
+  let autoScroll;
 
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      slides[current].classList.add('hidden');
-      current = (current - 1 + slides.length) % slides.length;
-      slides[current].classList.remove('hidden');
-    });
+  function showSlide(index) {
+    slides[current].classList.add('hidden');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.remove('hidden');
+  }
 
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      slides[current].classList.add('hidden');
-      current = (current + 1) % slides.length;
-      slides[current].classList.remove('hidden');
-    });
-  </script>
+  function nextSlide() {
+    showSlide(current + 1);
+  }
+
+  function prevSlide() {
+    showSlide(current - 1);
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    prevSlide();
+    resetAutoScroll();
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    nextSlide();
+    resetAutoScroll();
+  });
+
+  function startAutoScroll() {
+    autoScroll = setInterval(nextSlide, 5000); // change every 5 seconds
+  }
+
+  function resetAutoScroll() {
+    clearInterval(autoScroll);
+    startAutoScroll();
+  }
+
+  // Start autoplay on page load
+  startAutoScroll();
+</script>
 
 </body>
     <!-- ABOUT -->
@@ -1457,6 +1482,7 @@
   </script>
 </body>
 </html>
+
 
 
 
