@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Globetrack — Media Intelligence That Moves You</title>
+  <title>Globetrack-Media Intelligence That Moves You</title>
 
   <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -88,25 +88,23 @@
       <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
 
       <!-- Our Services with Submenu -->
-      <li class="relative">
-        <button 
-          onclick="toggleSubmenu(event)" 
-          class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-100 focus:outline-none"
-        >
-          Our Services 
-          <span id="arrowIcon" class="ml-2 transform transition-transform duration-500">▾</span>
-        </button>
-        <ul id="servicesSubmenu" 
-            class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white shadow-lg rounded-lg w-full text-sm hidden">
-          <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100">Media Monitoring</a></li>
-          <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100">Strategic Communication Measurement</a></li>
-          <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100">Insight Driven Analysis</a></li>
-          <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100">Advertisement Tracking</a></li>
-        </ul>
-      </li>
+<li class="relative">
+  <button 
+    class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-100 focus:outline-none services-toggle"
+  >
+    Our Services 
+    <span class="ml-2 transform transition-transform duration-500 arrow-icon">▾</span>
+  </button>
+  <ul class="services-submenu max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white shadow-lg rounded-lg w-full text-sm hidden">
+    <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100">Media Monitoring</a></li>
+    <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100">Strategic Communication Measurement</a></li>
+    <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100">Insight Driven Analysis</a></li>
+    <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100">Advertisement Tracking</a></li>
+  </ul>
+</li>
 
-      <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a></li>
-    </ul>
+<li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a></li>
+
 
     <!-- Search Bar -->
     <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
@@ -1539,6 +1537,7 @@
   </script>
 </body>
 </html>
+
 
 
 
