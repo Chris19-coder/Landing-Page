@@ -253,6 +253,46 @@
         </div>
       </section>
 
+        <!-- your carousel HTML above -->
+
+  <script>
+    const track = document.getElementById("carousel-track");
+    const slides = Array.from(track.children);
+    const indicatorsContainer = document.getElementById("carousel-indicators");
+
+    let currentIndex = 0;
+
+    // Create indicators based on the exact number of slides
+    slides.forEach((_, index) => {
+      const indicator = document.createElement("div");
+      if (index === 0) indicator.classList.add("active");
+      indicator.addEventListener("click", () => goToSlide(index));
+      indicatorsContainer.appendChild(indicator);
+    });
+
+    const indicators = Array.from(indicatorsContainer.children);
+
+    function updateIndicators(index) {
+      indicators.forEach((ind, i) =>
+        ind.classList.toggle("active", i === index)
+      );
+    }
+
+    function goToSlide(index) {
+      currentIndex = index;
+      track.style.transform = `translateX(-${100 * index}vw)`;
+      updateIndicators(index);
+    }
+
+    // Auto play every 6 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      goToSlide(currentIndex);
+    }, 6000);
+  </script>
+</body>
+</html>
+
     </div> <!-- end carousel-track -->
     <div class="carousel-indicators" id="carousel-indicators"></div>
   </div> <!-- end carousel -->
@@ -710,6 +750,7 @@
   </script>
 </body>
 </html>
+
 
 
 
