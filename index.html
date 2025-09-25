@@ -104,7 +104,25 @@
 </li>
 <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a></li>
 
+<!-- Submenu Toggle Script -->
+<script>
+  function toggleSubmenu(event) {
+    event.stopPropagation(); // Prevent immediate close when clicking button
+    const submenu = document.getElementById("servicesSubmenu");
+    const arrow = document.getElementById("arrowIcon");
 
+    if (submenu.classList.contains("max-h-0")) {
+      submenu.classList.remove("hidden");
+      submenu.classList.remove("max-h-0");
+      submenu.classList.add("max-h-96");
+      arrow.classList.add("rotate-180");
+    } else {
+      submenu.classList.add("max-h-0");
+      arrow.classList.remove("rotate-180");
+      setTimeout(() => submenu.classList.add("hidden"), 500); // wait for animation
+    }
+  }
+      
     <!-- Search Bar -->
     <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
       <div class="max-w-6xl mx-auto flex items-center gap-2">
@@ -367,7 +385,7 @@
       </div>
     </section>
 
-    <!-- SERVICES GRID (links switch pages) -->
+   <!-- SERVICES GRID (links switch pages) -->
     <section id="services" class="py-20 bg-white text-center px-6">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-4xl font-bold mb-4">Our Services</h2>
@@ -399,7 +417,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- PHOTO GRID -->
     <section id="photo-section" class="w-full bg-white py-16 px-6">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -1536,6 +1554,7 @@
   </script>
 </body>
 </html>
+
 
 
 
