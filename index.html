@@ -194,20 +194,20 @@
     <!-- HERO / CAROUSEL -->
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
-        <!-- Slide 1 -->
-        <section class="carousel-slide">
-          <video autoplay loop muted playsinline class="video-background">
-            <source src="future2.mp4" type="video/mp4">
-          </video>
-          <div class="video-overlay"></div>
-          <div data-aos="fade-up">
-            <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl whitespace-nowrap 
-           bg-gradient-to-r from-yellow-400 to-white bg-clip-text text-transparent">
-  <span class="font-playfair">The Differentiator Your Brand CAN'T</span>
-  <span class="font-epilogue block">IGNORE.</span>
-</h1>
-          </div>
-        </section>
+         <!-- Slide 1 -->
+    <section class="carousel-slide">
+      <video autoplay loop muted playsinline class="video-background">
+        <source src="future2.mp4" type="video/mp4">
+      </video>
+      <div class="video-overlay"></div>
+      <div class="carousel-text" data-aos="fade-up">
+        <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl whitespace-nowrap 
+        bg-gradient-to-r from-yellow-400 to-white bg-clip-text text-transparent">
+          <span class="font-playfair">The Differentiator Your Brand CAN'T</span>
+          <span class="font-epilogue block">IGNORE.</span>
+        </h1>
+      </div>
+    </section>
 
         <!-- Slide 2 -->
         <section class="carousel-slide">
@@ -270,25 +270,25 @@
         </section>
       </div>
 
-    <!-- Left Button -->
-    <button
-      class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
-      id="prevBtn">
-      &#10094;
-    </button>
+      <!-- Left Button -->
+  <button
+    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
+    id="prevBtn">
+    &#10094;
+  </button>
 
-    <!-- Right Button -->
-    <button
-      class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
-      id="nextBtn">
-      &#10095;
-    </button>
+  <!-- Right Button -->
+  <button
+    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
+    id="nextBtn">
+    &#10095;
+  </button>
 
-    <!-- Indicators -->
-    <div class="carousel-indicators"></div>
-  </div>
+  <!-- Indicators -->
+  <div class="carousel-indicators"></div>
+</div>
 
-    <script>
+<script>
   const track = document.getElementById("carousel-track");
   const slides = document.querySelectorAll(".carousel-slide");
   const prevBtn = document.getElementById("prevBtn");
@@ -314,8 +314,18 @@
     currentIndex = (index + slides.length) % slides.length;
     track.style.transform = `translateX(-${currentIndex * 100}vw)`;
 
+    // Update indicators
     indicators.forEach(dot => dot.classList.remove("active"));
     indicators[currentIndex].classList.add("active");
+
+    // Animate the text
+    slides.forEach((slide, i) => {
+      const text = slide.querySelector(".carousel-text");
+      if (text) {
+        text.style.opacity = i === currentIndex ? "1" : "0";
+        text.style.transition = "opacity 1s ease";
+      }
+    });
   }
 
   function nextSlide() {
@@ -337,7 +347,7 @@
   });
 
   function startAutoScroll() {
-    autoScroll = setInterval(nextSlide, 5000); // change every 5 seconds
+    autoScroll = setInterval(nextSlide, 5000); // change every 5s
   }
 
   function resetAutoScroll() {
@@ -346,9 +356,9 @@
   }
 
   // Start autoplay
+  showSlide(0);
   startAutoScroll();
 </script>
-
 
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
@@ -1528,6 +1538,7 @@
   </script>
 </body>
 </html>
+
 
 
 
