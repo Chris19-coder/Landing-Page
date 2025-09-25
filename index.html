@@ -1098,38 +1098,104 @@
       </div>
     </section>
 
-    <!-- SERVICES GRID (links switch pages) -->
-    <section id="services" class="py-20 bg-white text-center px-6">
-      <div class="max-w-5xl mx-auto">
-        <h2 class="text-4xl font-bold mb-4">Our Services</h2>
-        <p class="text-lg mb-10">We offer advanced media monitoring, strategic communication measurement, and insight-driven analytics...</p>
-        <div class="grid md:grid-cols-4 gap-8">
-          <div class="bg-gray-100 p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
-            <p class="text-sm mb-4">Real-time visibility across broadcast, print, online, and social media.</p>
-            <a href="#service1" class="text-yellow-600 hover:underline font-medium" data-link="service1">Learn More →</a>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
-            <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
-            <a href="#service2" class="text-yellow-600 hover:underline font-medium" data-link="service2">Learn More →</a>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
-            <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
-            <a href="#service3" class="text-yellow-600 hover:underline font-medium" data-link="service3">Learn More →</a>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-lg shadow">
-            <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
-            <p class="text-sm mb-4">Measure ad placement performance across channels in real time.</p>
-            <a href="#service4" class="text-yellow-600 hover:underline font-medium" data-link="service4">Learn More →</a>
-          </div>
-        </div>
+    <!-- SERVICES GRID -->
+<section id="services" class="py-20 bg-white text-center px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4">Our Services</h2>
+    <p class="text-lg mb-10">We offer advanced media monitoring, strategic communication measurement, and insight-driven analytics...</p>
+    <div class="grid md:grid-cols-4 gap-8">
+      <!-- Service 1 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2">Media Monitoring</h3>
+        <p class="text-sm mb-4">Real-time visibility across broadcast, print, online, and social media.</p>
+        <a href="#service1" class="text-yellow-600 hover:underline font-medium" onclick="openService('service1'); return false;">Learn More →</a>
       </div>
-    </section>
+
+      <!-- Service 2 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2">Strategic Communication Measurement</h3>
+        <p class="text-sm mb-4">Metrics that align media performance to your communication goals.</p>
+        <a href="#service2" class="text-yellow-600 hover:underline font-medium" onclick="openService('service2'); return false;">Learn More →</a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2">Insight-Driven Analysis</h3>
+        <p class="text-sm mb-4">Deep analytics to support decisions that fuel long-term growth.</p>
+        <a href="#service3" class="text-yellow-600 hover:underline font-medium" onclick="openService('service3'); return false;">Learn More →</a>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow">
+        <h3 class="text-2xl font-semibold mb-2">Advertisement Tracking</h3>
+        <p class="text-sm mb-4">Measure ad placement performance across channels in real time.</p>
+        <a href="#service4" class="text-yellow-600 hover:underline font-medium" onclick="openService('service4'); return false;">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE SUBPAGES -->
+<div id="service1" class="service-page hidden p-10 max-w-5xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">Media Monitoring</h1>
+  <p class="mb-6">Real-time visibility across broadcast, print, online, and social media. Expand this section with charts, examples, and details.</p>
+  <nav class="mb-6">
+    <a onclick="openService('service2')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Strategic Communication Measurement</a>
+    <a onclick="openService('service3')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Insight-Driven Analysis</a>
+    <a onclick="openService('service4')" class="text-yellow-600 hover:underline cursor-pointer">Go to Advertisement Tracking</a>
+  </nav>
+  <div class="text-red-600 cursor-pointer hover:underline" onclick="backToHome()">← Back to Home</div>
+</div>
+
+<div id="service2" class="service-page hidden p-10 max-w-5xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">Strategic Communication Measurement</h1>
+  <p class="mb-6">Metrics that align media performance to your communication goals. Add more detailed content here.</p>
+  <nav class="mb-6">
+    <a onclick="openService('service1')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Media Monitoring</a>
+    <a onclick="openService('service3')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Insight-Driven Analysis</a>
+    <a onclick="openService('service4')" class="text-yellow-600 hover:underline cursor-pointer">Go to Advertisement Tracking</a>
+  </nav>
+  <div class="text-red-600 cursor-pointer hover:underline" onclick="backToHome()">← Back to Home</div>
+</div>
+
+<div id="service3" class="service-page hidden p-10 max-w-5xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">Insight-Driven Analysis</h1>
+  <p class="mb-6">Deep analytics to support decisions that fuel long-term growth. Expand with visuals and case studies.</p>
+  <nav class="mb-6">
+    <a onclick="openService('service1')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Media Monitoring</a>
+    <a onclick="openService('service2')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Strategic Communication Measurement</a>
+    <a onclick="openService('service4')" class="text-yellow-600 hover:underline cursor-pointer">Go to Advertisement Tracking</a>
+  </nav>
+  <div class="text-red-600 cursor-pointer hover:underline" onclick="backToHome()">← Back to Home</div>
+</div>
+
+<div id="service4" class="service-page hidden p-10 max-w-5xl mx-auto">
+  <h1 class="text-3xl font-bold mb-4">Advertisement Tracking</h1>
+  <p class="mb-6">Measure ad placement performance across channels in real time. Add charts, insights, and case examples.</p>
+  <nav class="mb-6">
+    <a onclick="openService('service1')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Media Monitoring</a>
+    <a onclick="openService('service2')" class="text-yellow-600 hover:underline mr-4 cursor-pointer">Go to Strategic Communication Measurement</a>
+    <a onclick="openService('service3')" class="text-yellow-600 hover:underline cursor-pointer">Go to Insight-Driven Analysis</a>
+  </nav>
+  <div class="text-red-600 cursor-pointer hover:underline" onclick="backToHome()">← Back to Home</div>
+</div>
+
+<!-- JS -->
+<script>
+  const servicePages = document.querySelectorAll('.service-page');
+  const servicesSection = document.getElementById('services');
+
+  function openService(serviceId) {
+    servicesSection.style.display = 'none'; // hide main grid
+    servicePages.forEach(p => p.classList.add('hidden')); // hide all subpages
+    document.getElementById(serviceId).classList.remove('hidden'); // show selected
+  }
+
+  function backToHome() {
+    servicePages.forEach(p => p.classList.add('hidden')); // hide all subpages
+    servicesSection.style.display = 'block'; // show main grid
+  }
+</script>
 
     <!-- PHOTO GRID -->
     <section id="photo-section" class="w-full bg-white py-16 px-6">
@@ -1539,6 +1605,7 @@
   </script>
 </body>
 </html>
+
 
 
 
