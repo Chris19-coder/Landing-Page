@@ -69,7 +69,60 @@
 
 <body class="text-gray-900">
 
-  <!-- HOME PAGE -->
+  <!-- ================= NAVBAR ================= -->
+  <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3" data-link="home">
+        <img src="logo1.png" alt="GlobeTrack" class="h-10">
+      </a>
+
+      <!-- Right icons -->
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSearch()" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+
+        <button id="menuToggle" class="text-2xl focus:outline-none" aria-label="Menu">☰</button>
+      </div>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
+      <li><a href="#home" class="block px-4 py-2 hover:bg-gray-100">Home</a></li>
+      <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
+      <li class="relative">
+        <button onclick="toggleSubmenu(event)" class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-100 focus:outline-none">
+          Our Services <span id="arrowIcon" class="ml-2 transform transition-transform duration-500">▾</span>
+        </button>
+        <ul id="servicesSubmenu" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white shadow-lg rounded-lg w-full text-sm hidden">
+          <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100">Media Monitoring</a></li>
+          <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100">Strategic Communication Measurement</a></li>
+          <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100">Insight Driven Analysis</a></li>
+          <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100">Advertisement Tracking</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a></li>
+    </ul>
+
+    <!-- Search Bar -->
+    <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
+      <div class="max-w-6xl mx-auto flex items-center gap-2">
+        <input id="searchInput" type="text" placeholder="Search (press Enter)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-yellow-500" />
+        <button onclick="clearSearch()" aria-label="Clear">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO / CAROUSEL ================= -->
   <main id="home" class="page active">
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
@@ -150,13 +203,41 @@
     </div>
   </main>
 
+  <!-- Scripts -->
   <script>
+    // Submenu toggle
+    function toggleSubmenu(event) {
+      event.stopPropagation();
+      const submenu = document.getElementById("servicesSubmenu");
+      const arrow = document.getElementById("arrowIcon");
+      if (submenu.classList.contains("max-h-0")) {
+        submenu.classList.remove("hidden","max-h-0");
+        submenu.classList.add("max-h-96");
+        arrow.classList.add("rotate-180");
+      } else {
+        submenu.classList.add("max-h-0");
+        arrow.classList.remove("rotate-180");
+        setTimeout(() => submenu.classList.add("hidden"), 500);
+      }
+    }
+    document.addEventListener("click", function(event) {
+      const submenu = document.getElementById("servicesSubmenu");
+      const arrow = document.getElementById("arrowIcon");
+      if (!submenu.contains(event.target) && !event.target.closest("button")) {
+        if (!submenu.classList.contains("max-h-0")) {
+          submenu.classList.add("max-h-0");
+          arrow.classList.remove("rotate-180");
+          setTimeout(() => submenu.classList.add("hidden"), 500);
+        }
+      }
+    });
+
+    // Carousel logic
     const track = document.getElementById("carousel-track");
     const slides = Array.from(track.children);
     const indicators = document.getElementById("carousel-indicators");
     let currentIndex = 0;
 
-    // create indicators
     slides.forEach((_, i) => {
       const dot = document.createElement("div");
       dot.addEventListener("click", () => goToSlide(i));
@@ -179,7 +260,6 @@
       goToSlide(currentIndex + direction);
     }
 
-    // init
     updateIndicators();
   </script>
 
@@ -636,6 +716,7 @@
   </script>
 </body>
 </html>
+
 
 
 
