@@ -61,74 +61,6 @@
 </head>
 <body class="text-gray-900">
 
-  <script>
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicatorsContainer = document.querySelector('.carousel-indicators');
-
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    let autoScrollInterval;
-
-    // Create indicators
-    slides.forEach((_, index) => {
-      const dot = document.createElement('div');
-      if (index === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        goToSlide(index);
-        resetAutoScroll();
-      });
-      indicatorsContainer.appendChild(dot);
-    });
-    const indicators = Array.from(indicatorsContainer.children);
-
-    function updateIndicators() {
-      indicators.forEach(dot => dot.classList.remove('active'));
-      indicators[currentIndex].classList.add('active');
-    }
-
-    function goToSlide(index) {
-      currentIndex = (index + totalSlides) % totalSlides;
-      track.style.transform = `translateX(-${currentIndex * 100}vw)`;
-      updateIndicators();
-    }
-
-    function nextSlide() {
-      goToSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-      goToSlide(currentIndex - 1);
-    }
-
-    // Button events
-    nextBtn.addEventListener('click', () => {
-      nextSlide();
-      resetAutoScroll();
-    });
-    prevBtn.addEventListener('click', () => {
-      prevSlide();
-      resetAutoScroll();
-    });
-
-    // Auto scroll
-    function startAutoScroll() {
-      autoScrollInterval = setInterval(nextSlide, 4000);
-    }
-
-    function resetAutoScroll() {
-      clearInterval(autoScrollInterval);
-      startAutoScroll();
-    }
-
-    // Start
-    startAutoScroll();
-  </script>
-</body>
-</html>
-
   <!-- ================= NAVBAR (shared) ================= -->
   <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -325,6 +257,68 @@
     <!-- Indicators -->
     <div class="carousel-indicators"></div>
   </div>
+
+    <script>
+  const track = document.getElementById("carousel-track");
+  const slides = document.querySelectorAll(".carousel-slide");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const indicatorsContainer = document.querySelector(".carousel-indicators");
+
+  let currentIndex = 0;
+  let autoScroll;
+
+  // Create indicators
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      showSlide(i);
+      resetAutoScroll();
+    });
+    indicatorsContainer.appendChild(dot);
+  });
+  const indicators = indicatorsContainer.querySelectorAll("div");
+
+  function showSlide(index) {
+    currentIndex = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${currentIndex * 100}vw)`;
+
+    indicators.forEach(dot => dot.classList.remove("active"));
+    indicators[currentIndex].classList.add("active");
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoScroll();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoScroll();
+  });
+
+  function startAutoScroll() {
+    autoScroll = setInterval(nextSlide, 5000); // change every 5 seconds
+  }
+
+  function resetAutoScroll() {
+    clearInterval(autoScroll);
+    startAutoScroll();
+  }
+
+  // Start autoplay
+  startAutoScroll();
+</script>
+
 
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
@@ -1504,6 +1498,7 @@
   </script>
 </body>
 </html>
+
 
 
 
