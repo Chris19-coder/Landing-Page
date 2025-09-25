@@ -160,28 +160,14 @@
 
   <!-- ================= PAGES (home + service pages) ================= -->
 
+<!-- ================= PAGES (home + service pages) ================= -->
+
 <!-- ========== HOME PAGE ========== -->
 <main id="home" class="page active">
 
   <!-- HERO / CAROUSEL -->
   <div class="carousel" id="carousel">
     <div class="carousel-track" id="carousel-track">
-
-      <style>
-        .gradient-text {
-          background: linear-gradient(to right, white, yellow);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .yellow-gradient-text {
-          background: linear-gradient(to right, yellow, white 20%, yellow 80%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .last-word {
-          display: block; /* Forces last word onto a new line */
-        }
-      </style>
 
       <!-- Slide 1 -->
       <section class="carousel-slide">
@@ -253,52 +239,108 @@
         </div>
       </section>
 
-        <!-- your carousel HTML above -->
-
-  <script>
-    const track = document.getElementById("carousel-track");
-    const slides = Array.from(track.children);
-    const indicatorsContainer = document.getElementById("carousel-indicators");
-
-    let currentIndex = 0;
-
-    // Create indicators based on the exact number of slides
-    slides.forEach((_, index) => {
-      const indicator = document.createElement("div");
-      if (index === 0) indicator.classList.add("active");
-      indicator.addEventListener("click", () => goToSlide(index));
-      indicatorsContainer.appendChild(indicator);
-    });
-
-    const indicators = Array.from(indicatorsContainer.children);
-
-    function updateIndicators(index) {
-      indicators.forEach((ind, i) =>
-        ind.classList.toggle("active", i === index)
-      );
-    }
-
-    function goToSlide(index) {
-      currentIndex = index;
-      track.style.transform = `translateX(-${100 * index}vw)`;
-      updateIndicators(index);
-    }
-
-    // Auto play every 6 seconds
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      goToSlide(currentIndex);
-    }, 6000);
-  </script>
-</body>
-</html>
-
     </div> <!-- end carousel-track -->
+
+    <!-- Indicators -->
     <div class="carousel-indicators" id="carousel-indicators"></div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-btn prev" id="prevBtn">&#10094;</button>
+    <button class="carousel-btn next" id="nextBtn">&#10095;</button>
   </div> <!-- end carousel -->
 
 </main>
 
+<!-- ================= CAROUSEL SCRIPT ================= -->
+<script>
+  const track = document.getElementById("carousel-track");
+  const slides = Array.from(track.querySelectorAll(".carousel-slide"));
+  const indicatorsContainer = document.getElementById("carousel-indicators");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  let currentIndex = 0;
+
+  // Generate dots
+  slides.forEach((_, index) => {
+    const indicator = document.createElement("div");
+    if (index === 0) indicator.classList.add("active");
+    indicator.addEventListener("click", () => goToSlide(index));
+    indicatorsContainer.appendChild(indicator);
+  });
+
+  const indicators = Array.from(indicatorsContainer.children);
+
+  function updateIndicators(index) {
+    indicators.forEach((ind, i) =>
+      ind.classList.toggle("active", i === index)
+    );
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    track.style.transform = `translateX(-${100 * index}vw)`;
+    updateIndicators(index);
+  }
+
+  // Auto play every 6 seconds
+  let autoPlay = setInterval(() => {
+    nextSlide();
+  }, 6000);
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    goToSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    goToSlide(currentIndex);
+  }
+
+  // Button listeners
+  nextBtn.addEventListener("click", () => {
+    nextSlide();
+    resetAutoPlay();
+  });
+
+  prevBtn.addEventListener("click", () => {
+    prevSlide();
+    resetAutoPlay();
+  });
+
+  function resetAutoPlay() {
+    clearInterval(autoPlay);
+    autoPlay = setInterval(() => {
+      nextSlide();
+    }, 6000);
+  }
+</script>
+
+<!-- ================= CAROUSEL STYLES ================= -->
+<style>
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 30;
+    border-radius: 50%;
+  }
+  .carousel-btn:hover {
+    background: rgba(0,0,0,0.7);
+  }
+  .carousel-btn.prev { left: 20px; }
+  .carousel-btn.next { right: 20px; }
+</style>
+
+</body>
+</html>
 
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
@@ -750,6 +792,7 @@
   </script>
 </body>
 </html>
+
 
 
 
