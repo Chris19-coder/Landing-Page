@@ -6,9 +6,9 @@
   <title>GlobeTrack — Media Intelligence That Moves You</title>
 
   <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Playfair+Display:ital,wght@1,300&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@600&family=Playfair+Display:ital,wght@1,300&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,41 +18,47 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
-    /* ======= Core styles from your fragments ======= */
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       scroll-behavior: smooth;
       overflow-x: hidden;
       background-color: #000;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing: antialiased; 
+      -moz-osx-font-smoothing: grayscale;
     }
-    .font-lovers { font-family: 'Lovers Quarrel', cursive; }
-    .font-young { font-family: 'Young Serif', serif; }
 
-    /* Carousel / slides */
+    /* Carousel */
     .carousel { width: 100vw; height: 100vh; overflow: hidden; position: relative; }
     .carousel-track { display:flex; transition: transform 0.8s ease-in-out; width:100%; height:100%; }
-    .carousel-slide { flex:0 0 100vw; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; padding:1rem; color:white; text-align:center; }
+    .carousel-slide { flex:0 0 100vw; height:100vh; display:flex; align-items:center; justify-content:center; position:relative; padding:1rem; text-align:center; }
     .carousel-slide .video-background { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; }
     .video-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2; }
     .carousel-slide > div[data-aos] { position:relative; z-index:10; }
 
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(to right, white, yellow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Indicators */
     .carousel-indicators { position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:20; }
     .carousel-indicators div { width:10px; height:10px; border-radius:9999px; background-color:white; opacity:0.5; cursor:pointer; }
     .carousel-indicators .active { opacity:1; background-color:yellow; }
 
-    /* Hide all "pages" by default; show with .active */
-    .page { display:none; min-height:100vh; }
-    .page.active { display:block; }
+    /* Left/right buttons */
+    .carousel-btn {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(0,0,0,0.5); border:none; color:white;
+      font-size:2rem; padding:0.5rem 1rem;
+      cursor:pointer; z-index:30; border-radius:8px;
+    }
+    .carousel-btn:hover { background:rgba(255,255,0,0.7); color:black; }
+    .carousel-btn.left { left:10px; }
+    .carousel-btn.right { right:10px; }
 
-    /* Service content container to allow scroll inside page if content is long */
-    .service-content { min-height: calc(100vh - 72px); /* leave space for nav */ overflow:auto; }
-
-    /* Small nicety for ring highlight */
-    section.ring { transition: box-shadow 0.3s ease-in-out; }
-
-    /* Mobile carousel 16:9 handling */
     @media (max-width: 768px) {
       .carousel { aspect-ratio: 16 / 9; height: auto; }
       .carousel-slide { height:100%; }
@@ -63,109 +69,11 @@
 
 <body class="text-gray-900">
 
-  <!-- ================= NAVBAR (shared) ================= -->
-  <header class="sticky top-0 z-50 bg-white border-b shadow-sm">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <!-- Logo -->
-      <a href="#home" class="flex items-center gap-3" data-link="home">
-        <img src="logo1.png" alt="GlobeTrack" class="h-10">
-      </a>
-
-      <!-- Right icons -->
-      <div class="flex items-center gap-4">
-        <button onclick="toggleSearch()" aria-label="Search">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </button>
-
-        <button id="menuToggle" class="text-2xl focus:outline-none" aria-label="Menu">☰</button>
-      </div>
-
-<!-- Dropdown Menu -->
-<ul id="dropdownMenu" class="absolute right-6 top-full mt-2 bg-white shadow-lg rounded-lg w-48 text-sm hidden z-50">
-  <li><a href="#home" class="block px-4 py-2 hover:bg-gray-100">Home</a></li>
-  <li><a href="#about" class="block px-4 py-2 hover:bg-gray-100">About Us</a></li>
-
-  <!-- Our Services with Submenu -->
-  <li class="relative">
-    <button 
-      onclick="toggleSubmenu(event)" 
-      class="flex justify-between items-center w-full px-4 py-2 hover:bg-gray-100 focus:outline-none"
-    >
-      Our Services 
-      <span id="arrowIcon" class="ml-2 transform transition-transform duration-500">▾</span>
-    </button>
-    <ul id="servicesSubmenu" 
-        class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out bg-white shadow-lg rounded-lg w-full text-sm hidden">
-      <li><a href="#service1" class="block px-4 py-2 hover:bg-gray-100">Media Monitoring</a></li>
-      <li><a href="#service2" class="block px-4 py-2 hover:bg-gray-100">Strategic Communication Measurement</a></li>
-      <li><a href="#service3" class="block px-4 py-2 hover:bg-gray-100">Insight Driven Analysis</a></li>
-      <li><a href="#service4" class="block px-4 py-2 hover:bg-gray-100">Advertisement Tracking</a></li>
-    </ul>
-  </li>
-
-  <li><a href="#contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a></li>
-</ul>
-
-<body>
-
-<!-- Submenu Toggle Script -->
-<script>
-  function toggleSubmenu(event) {
-    event.stopPropagation(); // Prevent immediate close when clicking button
-    const submenu = document.getElementById("servicesSubmenu");
-    const arrow = document.getElementById("arrowIcon");
-
-    if (submenu.classList.contains("max-h-0")) {
-      submenu.classList.remove("hidden");
-      submenu.classList.remove("max-h-0");
-      submenu.classList.add("max-h-96");
-      arrow.classList.add("rotate-180");
-    } else {
-      submenu.classList.add("max-h-0");
-      arrow.classList.remove("rotate-180");
-      setTimeout(() => submenu.classList.add("hidden"), 500); // wait for animation
-    }
-  }
-
-  // Close submenu if clicking outside
-  document.addEventListener("click", function(event) {
-    const submenu = document.getElementById("servicesSubmenu");
-    const arrow = document.getElementById("arrowIcon");
-    if (!submenu.contains(event.target) && !event.target.closest("button")) {
-      if (!submenu.classList.contains("max-h-0")) {
-        submenu.classList.add("max-h-0");
-        arrow.classList.remove("rotate-180");
-        setTimeout(() => submenu.classList.add("hidden"), 500);
-      }
-    }
-  });
-</script>
-
-    <!-- Search Bar (hidden by default) -->
-    <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
-      <div class="max-w-6xl mx-auto flex items-center gap-2">
-        <input id="searchInput" type="text" placeholder="Search (press Enter)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-yellow-500" />
-        <button onclick="clearSearch()" aria-label="Clear">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- ================= PAGES (home + service pages) ================= -->
-
-  <!-- ========== HOME PAGE ========== -->
+  <!-- HOME PAGE -->
   <main id="home" class="page active">
-
-    <!-- HERO / CAROUSEL -->
     <div class="carousel" id="carousel">
       <div class="carousel-track" id="carousel-track">
+        
         <!-- Slide 1 -->
         <section class="carousel-slide">
           <video autoplay loop muted playsinline class="video-background">
@@ -173,11 +81,8 @@
           </video>
           <div class="video-overlay"></div>
           <div data-aos="fade-up">
-            <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl text-white whitespace-nowrap">
-              <span class="font-playfair">The </span>
-              <span class="font-epilogue">Differentiator </span>
-              <span class="font-playfair">Your Brand </span>
-              <span class="font-epilogue">CAN'T IGNORE.</span>
+            <h1 class="mb-6 text-2xl md:text-4xl font-bold gradient-text">
+              The Differentiator Your Brand <br> CAN'T IGNORE
             </h1>
           </div>
         </section>
@@ -189,11 +94,8 @@
           </video>
           <div class="video-overlay"></div>
           <div data-aos="fade-up">
-           <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl text-white whitespace-nowrap">
-              <span class="font-playfair">The </span>
-              <span class="font-epilogue">Differentiator </span>
-              <span class="font-playfair">Your Brand </span>
-              <span class="font-epilogue">CAN'T OVERLOOK.</span>
+            <h1 class="mb-6 text-2xl md:text-4xl font-bold gradient-text">
+              The Differentiator Your Brand <br> CAN'T OVERLOOK
             </h1>
           </div>
         </section>
@@ -205,11 +107,8 @@
           </video>
           <div class="video-overlay"></div>
           <div data-aos="fade-up">
-            <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl text-white whitespace-nowrap">
-              <span class="font-playfair">The </span>
-              <span class="font-epilogue">Differentiator </span>
-              <span class="font-playfair">Your Brand </span>
-              <span class="font-young">MUST HAVE.</span>
+            <h1 class="mb-6 text-2xl md:text-4xl font-bold gradient-text">
+              The Differentiator Your Brand <br> MUST HAVE
             </h1>
           </div>
         </section>
@@ -221,11 +120,8 @@
           </video>
           <div class="video-overlay"></div>
           <div data-aos="fade-up">
-            <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl text-white whitespace-nowrap">
-              <span class="font-playfair">The </span>
-              <span class="font-epilogue">Differentiator </span>
-              <span class="font-playfair">Of </span>
-              <span class="font-epilogue">COMMUNICATION MEASUREMENT.</span>
+            <h1 class="mb-6 text-2xl md:text-4xl font-bold gradient-text">
+              The Differentiator Of <br> COMMUNICATION MEASUREMENT
             </h1>
           </div>
         </section>
@@ -237,20 +133,58 @@
           </video>
           <div class="video-overlay"></div>
           <div data-aos="fade-up">
-           <h1 class="mb-6 text-base sm:text-lg md:text-2xl lg:text-4xl text-black whitespace-nowrap">
-  <span class="font-playfair">The </span>
-  <span class="font-epilogue">Differentiator </span>
-  <span class="font-playfair">Of </span>
-  <span class="font-epilogue">MEDIA INTELLIGENCE.</span>
-</h1>
-
+            <h1 class="mb-6 text-2xl md:text-4xl font-bold gradient-text">
+              The Differentiator Of <br> MEDIA INTELLIGENCE
             </h1>
           </div>
         </section>
+
       </div>
 
+      <!-- Left/right buttons -->
+      <button class="carousel-btn left" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="carousel-btn right" onclick="moveSlide(1)">&#10095;</button>
+
+      <!-- Indicators -->
       <div class="carousel-indicators" id="carousel-indicators"></div>
     </div>
+  </main>
+
+  <script>
+    const track = document.getElementById("carousel-track");
+    const slides = Array.from(track.children);
+    const indicators = document.getElementById("carousel-indicators");
+    let currentIndex = 0;
+
+    // create indicators
+    slides.forEach((_, i) => {
+      const dot = document.createElement("div");
+      dot.addEventListener("click", () => goToSlide(i));
+      indicators.appendChild(dot);
+    });
+
+    function updateIndicators() {
+      indicators.querySelectorAll("div").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${100 * currentIndex}vw)`;
+      updateIndicators();
+    }
+
+    function moveSlide(direction) {
+      goToSlide(currentIndex + direction);
+    }
+
+    // init
+    updateIndicators();
+  </script>
+
+</body>
+</html>
 
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
@@ -702,6 +636,7 @@
   </script>
 </body>
 </html>
+
 
 
 
