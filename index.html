@@ -61,31 +61,6 @@
 </head>
 <body class="text-gray-900">
 
-  <div class="carousel">
-    <div class="carousel-track">
-      <div class="carousel-slide" style="background:yellow;">Slide 1</div>
-      <div class="carousel-slide" style="background:yellow;">Slide 2</div>
-      <div class="carousel-slide" style="background:yellow;">Slide 3</div>
-    </div>
-
-    <!-- Left Button -->
-    <button
-      class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
-      id="prevBtn">
-      &#10094;
-    </button>
-
-    <!-- Right Button -->
-    <button
-      class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
-      id="nextBtn">
-      &#10095;
-    </button>
-
-    <!-- Indicators -->
-    <div class="carousel-indicators"></div>
-  </div>
-
   <script>
     const track = document.querySelector('.carousel-track');
     const slides = Array.from(track.children);
@@ -333,8 +308,23 @@
         </section>
       </div>
 
-      <div class="carousel-indicators" id="carousel-indicators"></div>
-    </div>
+    <!-- Left Button -->
+    <button
+      class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
+      id="prevBtn">
+      &#10094;
+    </button>
+
+    <!-- Right Button -->
+    <button
+      class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full z-30"
+      id="nextBtn">
+      &#10095;
+    </button>
+
+    <!-- Indicators -->
+    <div class="carousel-indicators"></div>
+  </div>
 
     <!-- ABOUT -->
     <section id="about" class="py-20 bg-gray-100 text-center px-6">
@@ -1514,6 +1504,7 @@
   </script>
 </body>
 </html>
+
 
 
 
