@@ -122,6 +122,20 @@
       setTimeout(() => submenu.classList.add("hidden"), 500); // wait for animation
     }
   }
+
+  // Close submenu if clicking outside
+  document.addEventListener("click", function(event) {
+    const submenu = document.getElementById("servicesSubmenu");
+    const arrow = document.getElementById("arrowIcon");
+    if (!submenu.contains(event.target) && !event.target.closest("button")) {
+      if (!submenu.classList.contains("max-h-0")) {
+        submenu.classList.add("max-h-0");
+        arrow.classList.remove("rotate-180");
+        setTimeout(() => submenu.classList.add("hidden"), 500);
+      }
+    }
+  });
+</script>
       
     <!-- Search Bar -->
     <div id="searchBar" class="w-full bg-gray-100 px-6 py-3 hidden transition-all duration-300 ease-in-out">
@@ -1554,6 +1568,7 @@
   </script>
 </body>
 </html>
+
 
 
 
